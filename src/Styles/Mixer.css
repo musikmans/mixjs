@@ -1,0 +1,353 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.console-container {
+    margin-left:1vh;
+    margin-top:1vh;
+}
+
+.console-container .mixer svg {
+    max-height:99vh;
+}
+
+/* Crossfader */
+
+.console-container #x-fader {
+    position: absolute;
+    top: 86.6vh;
+    left: 84.2vh;
+    width: 4vh;
+    z-index: 10;
+}
+
+/* ******************** LEFT SIDE OF THE MIXER ************************************** */
+
+/* Volume Left side */
+.console-container #vol-1 {
+    position: absolute;
+    top: 12vh;
+    left: 4vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+/* Eject button left */
+
+.console-container #eject-left {
+    position: absolute;
+    top: 75vh;
+    left: 14vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Rewind button left */
+
+.console-container #rew-left {
+    position: absolute;
+    top: 75vh;
+    left: 23.8vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Play button left */
+
+.console-container #play-left {
+    position: absolute;
+    top: 75vh;
+    left: 33.3vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Forward button left */
+
+.console-container #ff-left {
+    position: absolute;
+    top: 75vh;
+    left: 43.2vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Stop button left */
+
+.console-container #stop-left {
+    position: absolute;
+    top: 75vh;
+    left: 53vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* FX Left Side */
+
+.console-container #fx-delay-1 {
+    position: absolute;
+    top: 27.6vh;
+    left: 59.3vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+.console-container #fx-reverb-1 {
+    position: absolute;
+    top: 36.9vh;
+    left: 59.3vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+.console-container #fx-pan-1 {
+    position: absolute;
+    top: 45.9vh;
+    left: 59.3vh;
+    width: 5.4vh;
+    z-index: 10;
+    transform: rotate(127deg);
+}
+
+.console-container #fx-lpf-1 {
+    position: absolute;
+    top: 55.5vh;
+    left: 59.5vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+.console-container #fx-hpf-1 {
+    position: absolute;
+    top: 65vh;
+    left: 59.6vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+/* Fader pitch left */
+
+.console-container #fader-pitch-left {
+    position: absolute;
+    top: 46.5vh;
+    left: 4.4vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+/* Vinyl project left */
+
+.console-container #vinyl-left {
+    position: absolute;
+    top: 26vh;
+    left: 13.7vh;
+    width: 40vh;
+    z-index: 30;
+}
+
+/* One bar button left */
+
+.console-container #loop-one-left {
+    position: absolute;
+    top: 87vh;
+    left: 14vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Four bars button left */
+
+.console-container #loop-four-left {
+    position: absolute;
+    top: 87vh;
+    left: 23.3vh;
+    width: 10.3vh;
+    z-index: 50;
+}
+
+/* Eight bars button left */
+
+.console-container #loop-eight-left {
+    position: absolute;
+    top: 87vh;
+    left: 34.6vh;
+    width: 12.1vh;
+    z-index: 50;
+}
+
+/* Sixteen bars button left */
+
+.console-container #loop-sixteen-left {
+    position: absolute;
+    top: 87vh;
+    left: 47.6vh;
+    width: 13.4vh;
+    z-index: 50;
+}
+
+/* ******************** RIGHT SIDE OF THE MIXER ************************************** */
+
+/* Volume Right side */
+
+.console-container #vol-2 {
+    position: absolute;
+    top: 12vh;
+    left: 162.8vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+/* Eject button right */
+
+.console-container #eject-right {
+    position: absolute;
+    top: 75vh;
+    left: 114vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Rewind button right */
+
+.console-container #rew-right {
+    position: absolute;
+    top: 75vh;
+    left: 124vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Play button right */
+
+.console-container #play-right {
+    position: absolute;
+    top: 75vh;
+    left: 133.7vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Forward button right */
+
+.console-container #ff-right {
+    position: absolute;
+    top: 75vh;
+    left: 143.5vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Stop button right */
+
+.console-container #stop-right {
+    position: absolute;
+    top: 75vh;
+    left: 153vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* FX Right Side */
+
+.console-container #fx-delay-2 {
+    position: absolute;
+    top: 27.4vh;
+    left: 108.1vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+.console-container #fx-reverb-2 {
+    position: absolute;
+    top: 36.7vh;
+    left: 108.1vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+.console-container #fx-pan-2 {
+    position: absolute;
+    top: 46vh;
+    left: 107.8vh;
+    width: 5.4vh;
+    z-index: 10;
+    transform: rotate(127deg);
+}
+
+.console-container #fx-lpf-2 {
+    position: absolute;
+    top: 55.6vh;
+    left: 108.2vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+.console-container #fx-hpf-2 {
+    position: absolute;
+    top: 64.9vh;
+    left: 108.1vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+/* Fader pitch right */
+
+.console-container #fader-pitch-right {
+    position: absolute;
+    top: 45.9vh;
+    left: 162.6vh;
+    width: 5.4vh;
+    z-index: 10;
+}
+
+/* Vinyl project right */
+
+.console-container #vinyl-right {
+    position: absolute;
+    top: 26vh;
+    left: 120vh;
+    width: 40vh;
+    z-index: 30;
+}
+
+/* One bars button right */
+
+.console-container #loop-one-right {
+    position: absolute;
+    top: 87vh;
+    left: 114vh;
+    width: 8vh;
+    z-index: 50;
+}
+
+/* Four bars button right */
+
+.console-container #loop-four-right {
+    position: absolute;
+    top: 87vh;
+    left: 123.5vh;
+    width: 10.3vh;
+    z-index: 50;
+}
+
+/* Eight bars button right */
+
+.console-container #loop-eight-right {
+    position: absolute;
+    top: 87vh;
+    left: 134.8vh;
+    width: 12.1vh;
+    z-index: 50;
+}
+
+/* Sixteen bars button right */
+
+.console-container #loop-sixteen-right {
+    position: absolute;
+    top: 87vh;
+    left: 147.5vh;
+    width: 13.4vh;
+    z-index: 50;
+}
