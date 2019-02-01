@@ -10,7 +10,7 @@ body {
 }
 
 .console-container .mixer svg {
-    max-height:99vh;
+    height:99vh;
 }
 
 /* Crossfader */
@@ -19,7 +19,7 @@ body {
     position: absolute;
     top: 86.6vh;
     left: 84.2vh;
-    width: 4vh;
+    max-width: 4vh;
     z-index: 10;
 }
 
