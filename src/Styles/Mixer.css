@@ -19,7 +19,7 @@ body {
     position: absolute;
     top: 86.6vh;
     left: 84.2vh;
-    max-width: 4vh;
+    width: 4vh;
     z-index: 10;
 }
 
@@ -88,8 +88,8 @@ body {
 
 .console-container #fx-delay-1 {
     position: absolute;
-    top: 27.6vh;
-    left: 59.3vh;
+    top: 27.4vh;
+    left: 59.4vh;
     width: 5.4vh;
     z-index: 10;
 }
@@ -97,7 +97,7 @@ body {
 .console-container #fx-reverb-1 {
     position: absolute;
     top: 36.9vh;
-    left: 59.3vh;
+    left: 59.5vh;
     width: 5.4vh;
     z-index: 10;
 }
@@ -108,7 +108,7 @@ body {
     left: 59.3vh;
     width: 5.4vh;
     z-index: 10;
-    transform: rotate(127deg);
+    transform: rotate(126deg);
 }
 
 .console-container #fx-lpf-1 {
@@ -122,7 +122,7 @@ body {
 .console-container #fx-hpf-1 {
     position: absolute;
     top: 65vh;
-    left: 59.6vh;
+    left: 59.5vh;
     width: 5.4vh;
     z-index: 10;
 }
@@ -132,7 +132,7 @@ body {
 .console-container #fader-pitch-left {
     position: absolute;
     top: 46.5vh;
-    left: 4.4vh;
+    left: 4.2vh;
     width: 5.4vh;
     z-index: 10;
 }
@@ -273,7 +273,7 @@ body {
     left: 107.8vh;
     width: 5.4vh;
     z-index: 10;
-    transform: rotate(127deg);
+    transform: rotate(126deg);
 }
 
 .console-container #fx-lpf-2 {
