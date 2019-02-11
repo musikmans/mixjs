@@ -1,24 +1,20 @@
 import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable";
+import { store } from "../store";
+import { changeLevel } from "../actions";
 
 class CrossFader extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          xfaderlevel: 0,
-        };
-      }
-
     componentDidMount() {
-        const Drag = Draggable.create("#x-fader", {
+        const Drag= Draggable.create("#x-fader", {
         type: "x",
-        bounds:{minX:-258, maxX:258},
+        bounds: '.mixer svg g g#prefix__Layer_1 g#prefix__CrossFader',
         onDrag: () => {
-          const position = ((Drag[0].x / 516)*2).toFixed(2);
-          this.setState((state, props) =>  {
-              return {xfaderlevel: position};
-          });
-          console.log(this.state.xfaderlevel)
+          const size = Math.round(Math.abs(Drag[0].minX)+Drag[0].maxX);
+          let position = ((Drag[0].x)/size*2).toFixed(2);
+          if (position<=-0.96) position=-1;
+          if (position>=0.96) position=1;
+          if (position>=-1 && position<=1) store.dispatch( changeLevel({ xfaderlevel: position }) )
+          console.log(store.getState().xfaderlevel)
             }
         })
     }

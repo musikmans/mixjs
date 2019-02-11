@@ -1,1 +1,22 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 87.4 85.5"><defs><style>.cls-1{opacity:0.5;}.cls-2{fill:#ddd;}</style></defs><title>forward_pressed</title><rect class="cls-1" width="87.4" height="85.49"/><rect class="cls-2" x="6.1" y="5" width="75.2" height="75.48"/><path d="M42.9,42.5,28.6,56.8V28.2Zm15.5,0L44.1,56.8V28.2Z" transform="translate(0.2 0.2)"/></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 87.4 85.5" style="enable-background:new 0 0 87.4 85.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.5;enable-background:new    ;}
+	.st1{fill:#DDDDDD;}
+	.st2{fill:url(#SVGID_1_);}
+</style>
+<title>forward_pressed</title>
+<rect class="st0" width="87.4" height="85.5"/>
+<rect x="6.1" y="5" class="st1" width="75.2" height="75.5"/>
+<radialGradient id="SVGID_1_" cx="41.2629" cy="45.0123" r="48.7498" gradientTransform="matrix(0.9436 -0.331 0.3352 0.9556 -12.7616 15.6576)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0" style="stop-color:#D31313"/>
+	<stop  offset="0.2616" style="stop-color:#D64F4F"/>
+	<stop  offset="0.6182" style="stop-color:#DA9B9B"/>
+	<stop  offset="0.8733" style="stop-color:#DCCBCB"/>
+	<stop  offset="1" style="stop-color:#DDDDDD"/>
+</radialGradient>
+<rect x="5.1" y="5.2" class="st2" width="75.2" height="75.5"/>
+<path d="M43.1,42.7L28.8,57V28.4L43.1,42.7z M58.6,42.7L44.3,57V28.4L58.6,42.7z"/>
+</svg>

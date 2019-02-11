@@ -13,6 +13,10 @@ body {
     height:99vh;
 }
 
+.mixer svg g g#prefix__Layer_1 g#prefix__CrossFader {
+    border: 35px solid black;
+}
+
 /* Crossfader */
 
 .console-container #x-fader {

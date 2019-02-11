@@ -1,24 +1,20 @@
 import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable"
+import { store } from "../store";
+import { changeRightPitchLevel } from "../actions";
 
 class PitchRight extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          pitchLevelRight: 0,
-        };
-      }
-
     componentDidMount() {
         const Drag = Draggable.create("#right-side-pitch", {
         type: "y",
-        bounds:{minY:-315, maxY:315},
+        bounds:'.mixer svg g g#prefix__Layer_1 g#prefix__Pitch-2 .prefix__cls-4',
         onDrag: () => {
-          const position = ((Drag[0].y / 630)*2).toFixed(2);
-          this.setState((state, props) =>  {
-              return {pitchLevelRight: position};
-          });
-          console.log(this.state.pitchLevelRight)
+          const size = Math.round(Math.abs(Drag[0].minY)+Drag[0].maxY);
+          let position = ((Drag[0].y)/size*2).toFixed(2);
+          if (position<=-0.96) position=-1;
+          if (position>=0.96) position=1;
+          if (position>=-1 && position<=1) store.dispatch( changeRightPitchLevel({ rightPitchLevel: position }) )
+          console.log(store.getState().rightPitchLevel)
             }
         })
     }
