@@ -74,3 +74,27 @@ export function change_vinyl_art_right(vinyl_art_right) {
     return { type: "CHANGE_VINYL_ART_RIGHT", vinyl_art_right }
 };
 
+export function change_loop_left(loop_left) {
+    return { type: "CHANGE_LOOP_LEFT", loop_left }
+};
+
+export function change_loop_right(loop_right) {
+    return { type: "CHANGE_LOOP_RIGHT", loop_right }
+};
+
+export function change_controls_left(controls_left) {
+    return { type: "CHANGE_CONTROLS_LEFT", controls_left }
+};
+
+export function change_controls_right(controls_right) {
+    return { type: "CHANGE_CONTROLS_RIGHT", controls_right }
+};
+
+export function load_music_left(isLoadedLeft) {
+    return { type: "MUSIC_LOADED_LEFT", isLoadedLeft }
+};
+
+export function load_music_right(isLoadedRight) {
+    return { type: "MUSIC_LOADED_RIGHT", isLoadedRight }
+};
+

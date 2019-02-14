@@ -15,7 +15,13 @@ const initialState = {
   pan_left: 0,
   pan_right: 0,
   vinyl_art_left: "https://www.hrrshop.de/bilder/produkte/normal/IRON-MAIDEN-The-Book-of-Souls-Live-Chapter-3LP.jpg",
-  vinyl_art_right: "https://i.ebayimg.com/images/g/0NUAAOSwVZ5bzGp6/s-l640.png"
+  vinyl_art_right: "https://i.ebayimg.com/images/g/0NUAAOSwVZ5bzGp6/s-l640.png",
+  loop_left: "inactive",
+  loop_right: "inactive",
+  controls_left: "stop",
+  controls_right: "stop",
+  isLoadedLeft: true,
+  isLoadedRight: true,
 };
 
 function reducer(state = initialState, action) {
@@ -132,6 +138,42 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         vinyl_art_right: action.vinyl_art_right
+    };
+
+    case "CHANGE_LOOP_LEFT":
+      return {
+        ...state,
+        loop_left: action.loop_left
+    };
+
+    case "CHANGE_LOOP_RIGHT":
+      return {
+        ...state,
+        loop_right: action.loop_right
+    };
+
+    case "CHANGE_CONTROLS_LEFT":
+      return {
+        ...state,
+        controls_left: action.controls_left
+    };
+
+    case "CHANGE_CONTROLS_RIGHT":
+      return {
+        ...state,
+       controls_right: action.controls_right
+    };
+
+    case "MUSIC_LOADED_LEFT":
+      return {
+        ...state,
+        isLoadedLeft: action.isLoadedLeft
+    };
+
+    case "MUSIC_LOADED_RIGHT":
+      return {
+        ...state,
+        isLoadedRight: action.isLoadedRight
     };
 
     default:
