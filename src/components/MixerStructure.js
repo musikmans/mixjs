@@ -16,13 +16,84 @@ import CrossFader from './CrossFader';
 import KnobPanning from './KnobPanning';
 import KnobVolume from './KnobVolume';
 import TurnTables from './TurnTables';
+import TimeTextLeft from './TimeTextLeft';
+import BpmLeft from './BpmLeft';
+import {store} from '../store';
+import { store_music_data_left, change_vinyl_art_left, wave_music_left, set_bpm_left } from "../actions";
+import {connect} from 'react-redux';
+import WaveSurfer from 'wavesurfer.js';
+import detect from 'bpm-detective';
+
+let file = 'http://localhost:5000/music/1. Zoe Song - Vanaheim (Original Mix).mp3'
+ 
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+let context = new AudioContext();
+ 
+// Fetch some audio file
+fetch(file)
+  // Get response as ArrayBuffer
+  .then(response => response.arrayBuffer())
+  .then(buffer => {
+    // Decode audio into an AudioBuffer
+    return new Promise((resolve, reject) => {
+      context.decodeAudioData(buffer, resolve, reject);
+    });
+  })
+  // Run detection
+  .then(buffer => {
+    try {
+      const bpm = detect(buffer);
+      store.dispatch(set_bpm_left({bpmLeft: bpm}));
+      console.log(store.getState().bpmLeft.bpmLeft)
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+var jsmediatags = require("jsmediatags");
+
+jsmediatags.read(file, {
+  onSuccess: function(tag) {
+    store.dispatch(store_music_data_left({id3Left: tag}));
+  }
+});
+
+const mapStateToProps = state => ({
+  id3Left: state.id3Left.id3Left,
+});
+
+function _arrayBufferToBase64(buffer) {
+  var binary = '';
+  var bytes = new Uint8Array (buffer);
+  var len = bytes.byteLength;
+  for (var i = 0; i < len; i++) {
+    binary += String.fromCharCode (bytes[i]);
+  }
+  return window.btoa (binary);
+}
 
 class MixerStructure extends Component {
+  componentDidMount() {
+    let wavesurfer = WaveSurfer.create({
+      container: '#leftwave',
+      waveColor: 'red',
+      progressColor: '#c7c704',
+      responsive: true,
+      barWidth: '5',
+      barHeight: '3'
+    });
+    wavesurfer.load(file);
+    wavesurfer.zoom(80);
+    store.dispatch(wave_music_left({musicOnTheLeft: wavesurfer}));
+  }
+
   render () {
     return (
       <main>
         <div className="console-container">
           <ReactOrientation type="landscape" />
+          <TimeTextLeft />
+          <BpmLeft />
           <KnobVolume
             imageId="knob-volume-left"
             componentId="vol-1"
@@ -55,7 +126,7 @@ class MixerStructure extends Component {
             componentClass="fx-left"
           />
           <TurnTables
-            imageId="vinyl-disc-left"
+            imageid="vinyl-disc-left"
             componentId="vinyl-left"
             componentClass="vinyl-left"
           />
@@ -67,7 +138,6 @@ class MixerStructure extends Component {
           <OneBar
             componentId="loop-one-left"
             componentClass="controls-left"
-            side="left"
           />
           <FourBars
             componentId="loop-four-left"
@@ -113,7 +183,7 @@ class MixerStructure extends Component {
             componentClass="fx-right"
           />
           <TurnTables
-            imageId="vinyl-disc-right"
+            imageid="vinyl-disc-right"
             componentId="vinyl-right"
             componentClass="vinyl-right"
           />
@@ -125,7 +195,6 @@ class MixerStructure extends Component {
           <OneBar
             componentId="loop-one-right"
             componentClass="controls-right"
-            side="right"
           />
           <FourBars
             componentId="loop-four-right"
@@ -140,6 +209,7 @@ class MixerStructure extends Component {
             componentClass="controls-right"
           />
           <CrossFader />
+          <div id="leftwave"></div>
           <div className="mixer">
             <MixerComponent />
           </div>
@@ -147,6 +217,19 @@ class MixerStructure extends Component {
       </main>
     );
   }
+  componentDidUpdate (prevProps, prevState, snapshot) {
+    if (prevProps.id3Left !== this.props.id3Left) {
+      if (this.props.id3Left.tags.picture===undefined) {
+        store.dispatch (change_vinyl_art_left({vinyl_art_left: "Assets/404.jpg"}));
+      } else {
+        const data=`data:image/jpeg;base64,${_arrayBufferToBase64(this.props.id3Left.tags.picture.data)}`
+        store.dispatch (change_vinyl_art_left({vinyl_art_left: data}));
+      }
+      // data:image/jpeg;base64,_arrayBufferToBase64(this.props.id3Left.tags.picture.data)
+      // console.log(this.props.id3Left.tags.picture.data)
+      // store.dispatch (change_vinyl_art_left({vinyl_art_left: this.props.id3Left.tags.picture.data}));
+    }
+  }
 }
 
-export default MixerStructure;
+export default connect (mapStateToProps) (MixerStructure);

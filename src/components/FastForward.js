@@ -25,6 +25,7 @@ class FastForward extends Component {
                     })
                 store.dispatch(change_controls_left({ controls_left: "forward" }))
                 console.log(store.getState().controls_left)
+                        store.getState().musicOnTheLeft.musicOnTheLeft.skipForward(2);
             } else {
                 if (store.getState().isLoadedRight.isLoadedRight === false) {
                     return;
@@ -44,7 +45,8 @@ class FastForward extends Component {
             this.setState({
             img: "Assets/forward_inactive.svg",
             })
-            store.dispatch(change_controls_left({ controls_left: "pause" }))
+            store.dispatch(change_controls_left({ controls_left: "play" }))
+            store.getState().musicOnTheLeft.musicOnTheLeft.play();
             console.log(store.getState().controls_left)
         } else {
             if (store.getState().isLoadedRight.isLoadedRight === false) {
@@ -53,7 +55,7 @@ class FastForward extends Component {
             this.setState({
             img: "Assets/forward_inactive.svg",
             })
-            store.dispatch(change_controls_right({ controls_right: "pause" }))
+            store.dispatch(change_controls_right({ controls_right: "play" }))
             console.log(store.getState().controls_right)
         }
     }

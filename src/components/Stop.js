@@ -25,7 +25,7 @@ class Stop extends Component {
                     img: "Assets/stop_inactive.svg",
                 })
                 store.dispatch(change_controls_left({ controls_left: "stop" }))
-                console.log(store.getState().controls_left)
+
             } else {
                 this.setState({
                     img: "Assets/stop_inactive.svg",
@@ -57,6 +57,7 @@ class Stop extends Component {
             this.setState({
                 img: "Assets/stop_pressed.svg"
             })
+            store.getState().musicOnTheLeft.musicOnTheLeft.stop();
         } else {
             if (store.getState().isLoadedRight.isLoadedRight === false) {
                 return;

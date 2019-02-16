@@ -10,7 +10,6 @@ class Rewind extends Component {
           componentId: props.componentId,
           componentClass: props.componentClass
         };
-
         this.stopRewind = this.stopRewind.bind(this);
         this.rewindMusic = this.rewindMusic.bind(this);
     }
@@ -25,6 +24,7 @@ class Rewind extends Component {
                     })
                 store.dispatch(change_controls_left({ controls_left: "rewind" }))
                 console.log(store.getState().controls_left)
+                store.getState().musicOnTheLeft.musicOnTheLeft.skipBackward(2);
 
             } else {
                 if (store.getState().isLoadedRight.isLoadedRight === false) {
@@ -46,7 +46,7 @@ class Rewind extends Component {
             this.setState({
                 img: "Assets/rew_inactive.svg",
                 })
-                store.dispatch(change_controls_left({ controls_left: "pause" }))
+                store.dispatch(change_controls_left({ controls_left: "play" }))
 
         } else {
             if (store.getState().isLoadedRight.isLoadedRight === false) {
@@ -55,7 +55,7 @@ class Rewind extends Component {
             this.setState({
                 img: "Assets/rew_inactive.svg",
                 })
-                store.dispatch(change_controls_right({ controls_right: "pause" }))
+                store.dispatch(change_controls_right({ controls_right: "play" }))
         }
     }
 

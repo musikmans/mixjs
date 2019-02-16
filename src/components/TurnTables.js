@@ -8,16 +8,16 @@ class TurnTables extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageId: props.imageId,
+      imageid: props.imageid,
       componentId: props.componentId,
       componentClass: props.componentClass,
     };
   }
 
-
   componentDidMount() {
-    const Drag = Draggable.create(`#${this.state.imageId}`, {
+    const Drag = Draggable.create(`#${this.state.imageid}`, {
       type: "rotation",
+      bounds: { minRotation: 0, maxRotation: 2500 },
       onDrag: () => {
         const discRotation = Drag[0].rotation.toFixed(2);
         switch (this.state.componentId) {
@@ -39,13 +39,13 @@ class TurnTables extends Component {
     if (this.state.componentId==="vinyl-left") {
       return (
         <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`}>
-          <VinylDisc id={`${this.state.imageId}`} artwork={`${store.getState().vinyl_art_left}`} artworkid='img1' />
+          <VinylDisc id={`${this.state.imageid}`} artwork={`${store.getState().vinyl_art_left}`} artworkid='img1' imageid={`${this.state.imageid}`} />
         </div>
       )
     } else {
     return (
       <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`}>
-        <VinylDisc id={`${this.state.imageId}`} artwork={`${store.getState().vinyl_art_right}`} artworkid='img2' />
+        <VinylDisc id={`${this.state.imageId}`} artwork={`${store.getState().vinyl_art_right}`} artworkid='img2' imageid={`${this.state.imageid}`} />
       </div>
     )}
   }

@@ -2,7 +2,10 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    font-size: 6px;
 }
+
+@import url('https://fonts.googleapis.com/css?family=Anton');
 
 .console-container {
     margin-left:1vh;
@@ -354,4 +357,67 @@ body {
     left: 147.5vh;
     width: 13.4vh;
     z-index: 50;
+}
+
+/* Waveform placement */
+#leftwave {
+    position: absolute;
+    background-color: rgba(0,0,0,.6);
+    z-index: 100;
+    width: 33vh;
+    height: 14vh;
+    left: 69vh;
+    top: 24vh;
+    padding-top: 4vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    border: 1px solid white;
+}
+
+/* Placement for time and Text */
+.textleft {
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 2vh;
+    color: whitesmoke;
+    left: 15vh;
+    top: 4.5vh;
+}
+
+.timeleft {
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 4.5vh;
+    color: whitesmoke;
+    left: 15vh;
+    top: 9.8vh;
+}
+
+.bpmleft {
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 3.6vh;
+    color: whitesmoke;
+    left: 60.3vh;
+    top: 6.2vh;
+    text-align: center;
+}
+
+.bpmtop{
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.8vh;
+    color: whitesmoke;
+    left: 61.2vh;
+    top: 2.4vh;
+    text-align: center;
+}
+
+@media (max-width: 991.98px) {
+
+
 }

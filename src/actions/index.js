@@ -67,11 +67,11 @@ export function change_vinyl_right(vinyl_right) {
 };
 
 export function change_vinyl_art_left(vinyl_art_left) {
-    return { type: "CHANGE_VINYL_ART_LEFT", vinyl_art_left }
+    return { type: "CHANGE_VINYL_ARTWORK_LEFT", vinyl_art_left }
 };
 
 export function change_vinyl_art_right(vinyl_art_right) {
-    return { type: "CHANGE_VINYL_ART_RIGHT", vinyl_art_right }
+    return { type: "CHANGE_VINYL_ARTWORK_RIGHT", vinyl_art_right }
 };
 
 export function change_loop_left(loop_left) {
@@ -98,3 +98,30 @@ export function load_music_right(isLoadedRight) {
     return { type: "MUSIC_LOADED_RIGHT", isLoadedRight }
 };
 
+export function store_music_data_left(id3Left) {
+    return { type: "GET_ID3_LEFT", id3Left }
+};
+
+export function store_music_data_right(id3Right) {
+    return { type: "GET_ID3_RIGHT", id3Right }
+};
+
+export function wave_music_left(musicOnTheLeft) {
+    return { type: "SET_MUSIC_LEFT", musicOnTheLeft }
+};
+
+export function wave_music_right(musicOnTheRight) {
+    return { type: "SET_MUSIC_RIGHT", musicOnTheRight }
+};
+
+export function set_bpm_left(bpmLeft) {
+    return { type: "SET_LEFT_BPM", bpmLeft }
+};
+
+export function set_bpm_right(bpmRight) {
+    return { type: "SET_RIGHT_BPM", bpmRight }
+};
+
+export function the_left_interval(intervalLeft) {
+    return { type: "SET_INTERVAL_LEFT", intervalLeft }
+};

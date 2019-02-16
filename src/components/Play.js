@@ -11,6 +11,8 @@ import {
 const mapStateToProps = state => ({
   controls_left: state.controls_left.controls_left,
   controls_right: state.controls_right.controls_right,
+  musicOnTheLeft: state.musicOnTheLeft.musicOnTheLeft,
+  musicOnTheRight: state.musicOnTheLeft.musicOnTheLeft,
 });
 
 class Play extends Component {
@@ -28,15 +30,19 @@ class Play extends Component {
 
   playMusic (side) {
     if (side === 'play-left') {
-      if (store.getState ().isLoadedLeft.isLoadedLeft === false) {
+      if (store.getState().isLoadedLeft.isLoadedLeft === false) {
         return;
       }
-      if (store.getState ().controls_left.controls_left !== 'play') {
+      if (store.getState().controls_left.controls_left !== 'play') {
         this.setState ({
           img: 'Assets/play_active.svg',
         });
         store.dispatch (change_controls_left ({controls_left: 'play'}));
-        console.log (store.getState ().controls_left);
+        store.getState().musicOnTheLeft.musicOnTheLeft.on('ready', function () {
+          store.getState().musicOnTheLeft.musicOnTheLeft.play(0);
+        });
+        // Play music here
+        store.getState().musicOnTheLeft.musicOnTheLeft.play();
       } else {
         this.setState ({
           img: 'Assets/play_inactive.svg',
@@ -44,6 +50,7 @@ class Play extends Component {
         store.dispatch (change_controls_left ({controls_left: 'pause'}));
         store.dispatch (change_loop_left ({loop_left: 'inactive'}));
         console.log (store.getState ().controls_left);
+        store.getState().musicOnTheLeft.musicOnTheLeft.playPause();
       }
     } else {
       if (store.getState ().isLoadedRight.isLoadedRight === false) {
@@ -61,7 +68,7 @@ class Play extends Component {
         });
         store.dispatch (change_controls_right ({controls_right: 'pause'}));
         store.dispatch (change_loop_right ({loop_right: 'inactive'}));
-        console.log (store.getState ().controls_right);
+        console.log (store.getState().controls_right);
       }
     }
   }
@@ -113,6 +120,15 @@ class Play extends Component {
       ) {
         this.setState ({
           img: 'Assets/play_inactive.svg',
+        });
+        store.dispatch (change_loop_left ({loop_left: 'inactive'}));
+      }
+      if (
+        prevProps.controls_left !== this.props.controls_left &&
+        this.props.controls_left === 'play'
+      ) {
+        this.setState ({
+          img: 'Assets/play_active.svg',
         });
         store.dispatch (change_loop_left ({loop_left: 'inactive'}));
       }

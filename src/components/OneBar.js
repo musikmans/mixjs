@@ -1,25 +1,39 @@
-import React, {Component} from 'react';
-import {store} from '../store';
-import {connect} from 'react-redux';
-import {change_loop_left, change_loop_right} from '../actions';
+import React, { Component } from 'react';
+import { store } from '../store';
+import { connect } from 'react-redux';
+import { change_loop_left, change_loop_right, the_left_interval } from '../actions';
 
 const mapStateToProps = state => ({
   loop_left: state.loop_left.loop_left,
   loop_right: state.loop_right.loop_right,
+  controls_left: state.controls_left.controls_left,
+  controls_right: state.controls_right.controls_right,
 });
 
+const musicInterval = function () {
+  const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
+  const currentTime = wavesurfer.getCurrentTime();
+  const bpm = store.getState().bpmLeft.bpmLeft;
+  const musicBarsPerMin = bpm / 4;
+  const oneBarLength = 60 / musicBarsPerMin;
+  const endloop = currentTime + oneBarLength;
+  const secToInt = oneBarLength * 1000;
+  const theMusicInterval = setInterval(function () { store.getState().musicOnTheLeft.musicOnTheLeft.play(currentTime, endloop) }, secToInt);
+  store.dispatch(the_left_interval({ intervalLeft: theMusicInterval }));
+}
+
+
 class OneBar extends Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
     this.state = {
       img: 'Assets/one_bar_inactive.svg',
       componentId: props.componentId,
-      componentClass: props.componentClass,
-      side: props.side,
+      componentClass: props.componentClass
     };
   }
 
-  render () {
+  render() {
     return (
       <div
         id={`${this.state.componentId}`}
@@ -28,70 +42,94 @@ class OneBar extends Component {
         <img
           src={this.state.img}
           onMouseDown={() => {
-            this.setState ({
+            if (this.state.componentId === 'loop-one-left') {
+            if (store.getState().loop_left.loop_left === 'fourbars' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'sixteenbars' ) {
+              return;
+            }
+            this.setState({
               img: 'Assets/one_bar_pressed.svg',
             });
+          } else {
+            this.setState({
+              img: 'Assets/one_bar_pressed.svg',
+            });
+          }
           }}
           onMouseUp={() => {
             if (this.state.componentId === 'loop-one-left') {
+              if (store.getState().loop_left.loop_left === 'fourbars' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'sixteenbars' ) {
+                return;
+              }
               if (
-                store.getState ().loop_left.loop_left !== 'onebar' &&
-                store.getState ().controls_left.controls_left === 'play'
+                store.getState().loop_left.loop_left !== 'onebar' &&
+                store.getState().controls_left.controls_left === 'play'
               ) {
-                this.setState ({
+                this.setState({
                   img: 'Assets/one_bar_active.svg',
                 });
-                store.dispatch (change_loop_left ({loop_left: 'onebar'}));
-                console.log (store.getState ().loop_left);
+                store.dispatch(change_loop_left({ loop_left: 'onebar' }));
+                console.log(store.getState().loop_left);
+                musicInterval();
               } else {
-                this.setState ({
+                this.setState({
                   img: 'Assets/one_bar_inactive.svg',
                 });
-                store.dispatch (change_loop_left ({loop_left: 'inactive'}));
-                console.log (store.getState ().loop_left);
+                store.dispatch(change_loop_left({ loop_left: 'inactive' }));
+                if (store.getState().controls_left.controls_left === 'play') {
+                  clearInterval(store.getState().intervalLeft.intervalLeft);
+                  store.dispatch(the_left_interval({ intervalLeft: '' }));
+                  store.getState().musicOnTheLeft.musicOnTheLeft.play()
+                }
+                console.log(store.getState().loop_left);
               }
             } else {
               if (
-                store.getState ().loop_right.loop_right !== 'onebar' &&
-                store.getState ().controls_right.controls_right === 'play'
+                store.getState().loop_right.loop_right !== 'onebar' &&
+                store.getState().controls_right.controls_right === 'play'
               ) {
-                this.setState ({
+                this.setState({
                   img: 'Assets/one_bar_active.svg',
                 });
-                store.dispatch (change_loop_right ({loop_right: 'onebar'}));
-                console.log (store.getState ().loop_right);
+                store.dispatch(change_loop_right({ loop_right: 'onebar' }));
+                console.log(store.getState().loop_right);
               } else {
-                this.setState ({
+                this.setState({
                   img: 'Assets/one_bar_inactive.svg',
                 });
-                store.dispatch (change_loop_right ({loop_right: 'inactive'}));
-                console.log (store.getState ().loop_right);
+                store.dispatch(change_loop_right({ loop_right: 'inactive' }));
+                console.log(store.getState().loop_right);
               }
             }
           }}
-          alt="Loop one bar"
+          alt="Loop one second"
         />
 
       </div>
     );
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (this.state.componentId === 'loop-one-left') {
       if (
         prevProps.loop_left !== this.props.loop_left &&
         this.props.loop_left !== 'onebar'
       ) {
-        this.setState ({
+        this.setState({
           img: 'Assets/one_bar_inactive.svg',
         });
+      }
+      if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop') {
+        clearInterval(store.getState().intervalLeft.intervalLeft);
+        store.dispatch(the_left_interval({ intervalLeft: '' }));
+        store.getState().musicOnTheLeft.musicOnTheLeft.stop();
+        console.log("stop");
       }
     } else {
       if (
         prevProps.loop_right !== this.props.loop_right &&
         this.props.loop_right !== 'onebar'
       ) {
-        this.setState ({
+        this.setState({
           img: 'Assets/one_bar_inactive.svg',
         });
       }
@@ -99,4 +137,4 @@ class OneBar extends Component {
   }
 }
 
-export default connect (mapStateToProps) (OneBar);
+export default connect(mapStateToProps)(OneBar);
