@@ -2,7 +2,7 @@ import VinylDisc from "./VinylDisc"
 import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable";
 import { store } from "../store";
-import { change_vinyl_left, change_vinyl_right, angle_percent_left } from "../actions";
+import { change_vinyl_left, change_vinyl_right } from "../actions";
 
 class TurnTables extends Component {
   constructor(props) {

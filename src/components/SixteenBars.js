@@ -28,12 +28,12 @@ class SixteenBars extends Component {
                     src={this.state.img}
                     onMouseDown={() => {
                         if (this.state.componentId === "loop-sixteen-left") {
-                        if (store.getState().loop_left.loop_left === 'onebar' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'fourbars' ) {
-                            return;
-                        }
-                        this.setState({
-                            img: "Assets/sixteen_bars_pressed.svg"
-                        })
+                            if (store.getState().loop_left.loop_left === 'onebar' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'fourbars') {
+                                return;
+                            }
+                            this.setState({
+                                img: "Assets/sixteen_bars_pressed.svg"
+                            })
                         } else {
                             this.setState({
                                 img: "Assets/sixteen_bars_pressed.svg"
@@ -43,7 +43,7 @@ class SixteenBars extends Component {
 
                     onMouseUp={() => {
                         if (this.state.componentId === "loop-sixteen-left") {
-                            if (store.getState().loop_left.loop_left === 'onebar' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'fourbars' ) {
+                            if (store.getState().loop_left.loop_left === 'onebar' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'fourbars') {
                                 return;
                             }
                             if (store.getState().loop_left.loop_left !== "sixteenbars" && store.getState().controls_left.controls_left === "play") {
@@ -107,12 +107,12 @@ class SixteenBars extends Component {
                     img: "Assets/sixteen_bars_inactive.svg",
                 })
             }
-            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop' && store.getState().intervalLeft!=='') {
+            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop' && store.getState().intervalLeft !== '') {
                 clearInterval(this.state.sixteenBarsInterval);
                 this.setState({
                     sixteenBarsInterval: ''
                 });
-              }
+            }
         } else {
             if (prevProps.loop_right !== this.props.loop_right && (this.props.loop_right !== "sixteenbars")) {
                 this.setState({

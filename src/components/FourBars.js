@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { store } from "../store";
 import { connect } from 'react-redux';
-import { change_loop_left, change_loop_right, the_left_interval } from "../actions";
+import { change_loop_left, change_loop_right } from "../actions";
 
 const mapStateToProps = (state) => ({
     loop_left: state.loop_left.loop_left,

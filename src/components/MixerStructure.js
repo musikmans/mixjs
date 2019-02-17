@@ -24,7 +24,7 @@ import {connect} from 'react-redux';
 import WaveSurfer from 'wavesurfer.js';
 import detect from 'bpm-detective';
 
-let file = 'http://localhost:5000/music/1. Ciree - Imagination.mp3'
+let file = 'http://localhost:5000/music/Venetica - Catalina\'s Riddle (Pierre Pienaar Remix).mp3'
  
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let context = new AudioContext();
@@ -78,9 +78,8 @@ class MixerStructure extends Component {
       container: '#leftwave',
       waveColor: 'red',
       progressColor: '#c7c704',
-      responsive: true,
       barWidth: '5',
-      barHeight: '3'
+      barHeight: '2',
     });
     wavesurfer.load(file);
     wavesurfer.zoom(80);

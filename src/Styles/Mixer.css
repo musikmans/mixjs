@@ -374,6 +374,10 @@ body {
     border: 1px solid white;
 }
 
+#leftwave wave{
+    max-height:11vh;
+}
+
 /* Placement for time and Text */
 .textleft {
     z-index: 100;
@@ -403,7 +407,7 @@ body {
     color: whitesmoke;
     left: 60.3vh;
     top: 6.2vh;
-    text-align: center;
+    text-align: right;
 }
 
 .bpmtop{
