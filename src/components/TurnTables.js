@@ -2,7 +2,7 @@ import VinylDisc from "./VinylDisc"
 import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable";
 import { store } from "../store";
-import { change_vinyl_left, change_vinyl_right } from "../actions";
+import { change_vinyl_left, change_vinyl_right, angle_percent_left } from "../actions";
 
 class TurnTables extends Component {
   constructor(props) {
@@ -17,7 +17,7 @@ class TurnTables extends Component {
   componentDidMount() {
     const Drag = Draggable.create(`#${this.state.imageid}`, {
       type: "rotation",
-      bounds: { minRotation: 0, maxRotation: 2500 },
+      bounds: { minRotation: 0, maxRotation: 100000 },
       onDrag: () => {
         const discRotation = Drag[0].rotation.toFixed(2);
         switch (this.state.componentId) {
@@ -32,7 +32,6 @@ class TurnTables extends Component {
         }
       }
     })
-
   }
 
   render() {
@@ -49,6 +48,26 @@ class TurnTables extends Component {
       </div>
     )}
   }
+
+  componentDidUpdate() {
+    const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
+    wavesurfer.on('audioprocess', function () {
+      if (wavesurfer.isPlaying()) {
+        const totalTime = wavesurfer.getDuration();
+        const currentTime = wavesurfer.getCurrentTime();
+        const percentage = (currentTime / totalTime)*100;
+        const rotationAngle = 1000 * percentage;
+        document.getElementById("vinyl-left").style.transform = `rotate(${rotationAngle}deg)`;
+      } else {
+        const totalTime = wavesurfer.getDuration();
+        const currentTime = wavesurfer.getCurrentTime();
+        const percentage = (currentTime / totalTime)*100;
+        const rotationAngle = 2000 * percentage;
+        document.getElementById("vinyl-left").style.transform = `rotate(-${rotationAngle}deg)`;
+      }
+    });
+  }
+
 }
 
 export default TurnTables;

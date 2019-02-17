@@ -10,26 +10,14 @@ const mapStateToProps = state => ({
   controls_right: state.controls_right.controls_right,
 });
 
-const musicInterval = function () {
-  const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
-  const currentTime = wavesurfer.getCurrentTime();
-  const bpm = store.getState().bpmLeft.bpmLeft;
-  const musicBarsPerMin = bpm / 4;
-  const oneBarLength = 60 / musicBarsPerMin;
-  const endloop = currentTime + oneBarLength;
-  const secToInt = oneBarLength * 1000;
-  const theMusicInterval = setInterval(function () { store.getState().musicOnTheLeft.musicOnTheLeft.play(currentTime, endloop) }, secToInt);
-  store.dispatch(the_left_interval({ intervalLeft: theMusicInterval }));
-}
-
-
 class OneBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
       img: 'Assets/one_bar_inactive.svg',
       componentId: props.componentId,
-      componentClass: props.componentClass
+      componentClass: props.componentClass,
+      oneBarInterval: ''
     };
   }
 
@@ -43,41 +31,49 @@ class OneBar extends Component {
           src={this.state.img}
           onMouseDown={() => {
             if (this.state.componentId === 'loop-one-left') {
-            if (store.getState().loop_left.loop_left === 'fourbars' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'sixteenbars' ) {
-              return;
+              if (store.getState().loop_left.loop_left === 'fourbars' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'sixteenbars') {
+                return;
+              }
+              this.setState({
+                img: 'Assets/one_bar_pressed.svg',
+              });
+            } else {
+              this.setState({
+                img: 'Assets/one_bar_pressed.svg',
+              });
             }
-            this.setState({
-              img: 'Assets/one_bar_pressed.svg',
-            });
-          } else {
-            this.setState({
-              img: 'Assets/one_bar_pressed.svg',
-            });
-          }
           }}
           onMouseUp={() => {
             if (this.state.componentId === 'loop-one-left') {
-              if (store.getState().loop_left.loop_left === 'fourbars' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'sixteenbars' ) {
+              if (store.getState().loop_left.loop_left === 'fourbars' || store.getState().loop_left.loop_left === 'eightbars' || store.getState().loop_left.loop_left === 'sixteenbars') {
                 return;
               }
-              if (
-                store.getState().loop_left.loop_left !== 'onebar' &&
-                store.getState().controls_left.controls_left === 'play'
-              ) {
+              if (store.getState().loop_left.loop_left !== 'onebar' && store.getState().controls_left.controls_left === 'play') {
                 this.setState({
                   img: 'Assets/one_bar_active.svg',
                 });
                 store.dispatch(change_loop_left({ loop_left: 'onebar' }));
                 console.log(store.getState().loop_left);
-                musicInterval();
+                const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
+                const currentTime = wavesurfer.getCurrentTime();
+                const bpm = store.getState().bpmLeft.bpmLeft;
+                const musicBarsPerMin = bpm / 4;
+                const oneBarLength = 60 / musicBarsPerMin;
+                const endloop = currentTime + oneBarLength;
+                const secToInt = oneBarLength * 1000;
+                this.setState({
+                  oneBarInterval: setInterval(function () { store.getState().musicOnTheLeft.musicOnTheLeft.play(currentTime, endloop) }, secToInt)
+                });
               } else {
                 this.setState({
                   img: 'Assets/one_bar_inactive.svg',
                 });
                 store.dispatch(change_loop_left({ loop_left: 'inactive' }));
                 if (store.getState().controls_left.controls_left === 'play') {
-                  clearInterval(store.getState().intervalLeft.intervalLeft);
-                  store.dispatch(the_left_interval({ intervalLeft: '' }));
+                  clearInterval(this.state.oneBarInterval);
+                  this.setState({
+                    oneBarInterval: ''
+                  });
                   store.getState().musicOnTheLeft.musicOnTheLeft.play()
                 }
                 console.log(store.getState().loop_left);
@@ -119,10 +115,10 @@ class OneBar extends Component {
         });
       }
       if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop') {
-        clearInterval(store.getState().intervalLeft.intervalLeft);
-        store.dispatch(the_left_interval({ intervalLeft: '' }));
-        store.getState().musicOnTheLeft.musicOnTheLeft.stop();
-        console.log("stop");
+        clearInterval(this.state.oneBarInterval);
+        this.setState({
+          oneBarInterval: ''
+        });
       }
     } else {
       if (

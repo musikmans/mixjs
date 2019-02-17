@@ -24,7 +24,7 @@ import {connect} from 'react-redux';
 import WaveSurfer from 'wavesurfer.js';
 import detect from 'bpm-detective';
 
-let file = 'http://localhost:5000/music/1. Zoe Song - Vanaheim (Original Mix).mp3'
+let file = 'http://localhost:5000/music/1. Ciree - Imagination.mp3'
  
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let context = new AudioContext();

@@ -84,7 +84,6 @@ class Stop extends Component {
 
                     alt="Stop button "
                 />
-
             </div>
         );
     }

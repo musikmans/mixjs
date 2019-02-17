@@ -10,25 +10,14 @@ const mapStateToProps = (state) => ({
     controls_right: state.controls_right.controls_right,
 });
 
-const musicInterval = function () {
-    const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
-    const currentTime = wavesurfer.getCurrentTime();
-    const bpm = store.getState().bpmLeft.bpmLeft;
-    const musicBarsPerMin = bpm / 4;
-    const fourBarLength = (60 / musicBarsPerMin) * 4;
-    const endloop = currentTime + fourBarLength;
-    const secToInt = fourBarLength * 1000;
-    const theMusicInterval = setInterval(function () { store.getState().musicOnTheLeft.musicOnTheLeft.play(currentTime, endloop) }, secToInt);
-    store.dispatch(the_left_interval({ intervalLeft: theMusicInterval }));
-  }
-
 class EightBars extends Component {
     constructor(props) {
         super(props);
         this.state = {
             img: "Assets/eight_bars_inactive.svg",
             componentId: props.componentId,
-            componentClass: props.componentClass
+            componentClass: props.componentClass,
+            eightBarsInterval: ''
         };
     }
 
@@ -39,22 +28,22 @@ class EightBars extends Component {
                     src={this.state.img}
                     onMouseDown={() => {
                         if (this.state.componentId === "loop-eight-left") {
-                        if (store.getState().loop_left.loop_left === 'onebar' || store.getState().loop_left.loop_left === 'sixteenbars' || store.getState().loop_left.loop_left === 'fourbars' ) {
-                            return;
+                            if (store.getState().loop_left.loop_left === 'onebar' || store.getState().loop_left.loop_left === 'sixteenbars' || store.getState().loop_left.loop_left === 'fourbars') {
+                                return;
+                            }
+                            this.setState({
+                                img: "Assets/eight_bars_pressed.svg"
+                            })
+                        } else {
+                            this.setState({
+                                img: "Assets/eight_bars_pressed.svg"
+                            })
                         }
-                        this.setState({
-                            img: "Assets/eight_bars_pressed.svg"
-                        })
-                    } else {
-                        this.setState({
-                            img: "Assets/eight_bars_pressed.svg"
-                        })
-                    }
                     }}
 
                     onMouseUp={() => {
                         if (this.state.componentId === "loop-eight-left") {
-                            if (store.getState().loop_left.loop_left === 'onebar' || store.getState().loop_left.loop_left === 'fourbars' || store.getState().loop_left.loop_left === 'sixteenbars' ) {
+                            if (store.getState().loop_left.loop_left === 'onebar' || store.getState().loop_left.loop_left === 'fourbars' || store.getState().loop_left.loop_left === 'sixteenbars') {
                                 return;
                             }
                             if (store.getState().loop_left.loop_left !== "eightbars" && store.getState().controls_left.controls_left === "play") {
@@ -62,7 +51,16 @@ class EightBars extends Component {
                                     img: "Assets/eight_bars_active.svg",
                                 })
                                 store.dispatch(change_loop_left({ loop_left: "eightbars" }))
-                                musicInterval();
+                                const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
+                                const currentTime = wavesurfer.getCurrentTime();
+                                const bpm = store.getState().bpmLeft.bpmLeft;
+                                const musicBarsPerMin = bpm / 4;
+                                const oneBarLength = (60 / musicBarsPerMin) * 4;
+                                const endloop = currentTime + oneBarLength;
+                                const secToInt = oneBarLength * 1000;
+                                this.setState({
+                                    eightBarsInterval: setInterval(function () { store.getState().musicOnTheLeft.musicOnTheLeft.play(currentTime, endloop) }, secToInt)
+                                });
                                 console.log(store.getState().loop_left)
                             } else {
                                 this.setState({
@@ -70,8 +68,10 @@ class EightBars extends Component {
                                 })
                                 store.dispatch(change_loop_left({ loop_left: "inactive" }))
                                 if (store.getState().controls_left.controls_left === 'play') {
-                                    clearInterval(store.getState().intervalLeft.intervalLeft);
-                                    store.dispatch(the_left_interval({ intervalLeft: '' }));
+                                    clearInterval(this.state.eightBarsInterval);
+                                    this.setState({
+                                        eightBarsInterval: ''
+                                    });
                                     store.getState().musicOnTheLeft.musicOnTheLeft.play()
                                 }
                                 console.log(store.getState().loop_left)
@@ -107,8 +107,11 @@ class EightBars extends Component {
                     img: "Assets/eight_bars_inactive.svg",
                 })
             }
-            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop') {
-                console.log("stop");
+            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop' && store.getState().intervalLeft !== '') {
+                clearInterval(this.state.eightBarsInterval);
+                this.setState({
+                    eightBarsInterval: ''
+                });
             }
         } else {
             if (prevProps.loop_right !== this.props.loop_right && (this.props.loop_right !== "eightbars")) {
