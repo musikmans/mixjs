@@ -17,7 +17,8 @@ class EightBars extends Component {
             img: "Assets/eight_bars_inactive.svg",
             componentId: props.componentId,
             componentClass: props.componentClass,
-            eightBarsInterval: ''
+            eightBarsInterval: '',
+            eightBarsIntervalRight: ''
         };
     }
 
@@ -35,6 +36,9 @@ class EightBars extends Component {
                                 img: "Assets/eight_bars_pressed.svg"
                             })
                         } else {
+                            if (store.getState().loop_right.loop_right === 'onebar' || store.getState().loop_right.loop_right === 'sixteenbars' || store.getState().loop_right.loop_right === 'fourbars') {
+                                return;
+                            }
                             this.setState({
                                 img: "Assets/eight_bars_pressed.svg"
                             })
@@ -77,17 +81,37 @@ class EightBars extends Component {
                                 console.log(store.getState().loop_left)
                             }
                         } else {
+                            if (store.getState().loop_right.loop_right === 'onebar' || store.getState().loop_right.loop_right === 'fourbars' || store.getState().loop_right.loop_right === 'sixteenbars') {
+                                return;
+                            }
                             if (store.getState().loop_right.loop_right !== "eightbars" && store.getState().controls_right.controls_right === "play") {
                                 this.setState({
                                     img: "Assets/eight_bars_active.svg",
                                 })
                                 store.dispatch(change_loop_right({ loop_right: "eightbars" }))
+                                const wavesurfer = store.getState().musicOnTheRight.musicOnTheRight;
+                                const currentTime = wavesurfer.getCurrentTime();
+                                const bpm = store.getState().bpmRight.bpmRight;
+                                const musicBarsPerMin = bpm / 4;
+                                const oneBarLength = (60 / musicBarsPerMin) * 4;
+                                const endloop = currentTime + oneBarLength;
+                                const secToInt = oneBarLength * 1000;
+                                this.setState({
+                                    eightBarsIntervalRight: setInterval(function () { store.getState().musicOnTheRight.musicOnTheRight.play(currentTime, endloop) }, secToInt)
+                                });
                                 console.log(store.getState().loop_right)
                             } else {
                                 this.setState({
                                     img: "Assets/eight_bars_inactive.svg",
                                 })
                                 store.dispatch(change_loop_right({ loop_right: "inactive" }))
+                                if (store.getState().controls_right.controls_right === 'play') {
+                                    clearInterval(this.state.eightBarsIntervalRight);
+                                    this.setState({
+                                        eightBarsIntervalRight: ''
+                                    });
+                                    store.getState().musicOnTheRight.musicOnTheRight.play()
+                                }
                                 console.log(store.getState().loop_right)
                             }
                         }
@@ -107,7 +131,7 @@ class EightBars extends Component {
                     img: "Assets/eight_bars_inactive.svg",
                 })
             }
-            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop' && store.getState().intervalLeft !== '') {
+            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop') {
                 clearInterval(this.state.eightBarsInterval);
                 this.setState({
                     eightBarsInterval: ''
@@ -118,6 +142,12 @@ class EightBars extends Component {
                 this.setState({
                     img: "Assets/eight_bars_inactive.svg",
                 })
+            }
+            if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right === 'stop') {
+                clearInterval(this.state.eightBarsIntervalRight);
+                this.setState({
+                    eightBarsIntervalRight: ''
+                });
             }
         }
     }

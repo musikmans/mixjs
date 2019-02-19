@@ -1,12 +1,16 @@
 import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable";
 import { store } from "../store";
+import { connect } from 'react-redux';
 import {
-  change_delay_left, change_reverb_left, change_lpf_left,
-  change_hpf_left, change_volume_left, change_delay_right,
-  change_reverb_right, change_lpf_right, change_hpf_right,
-  change_volume_right
+  change_lpf_left,
+  change_hpf_left, change_lpf_right, change_hpf_right,
 } from "../actions";
+
+const mapStateToProps = state => ({
+  lpf_left: state.lpf_left.lpf_left,
+  hpf_left: state.hpf_left.hpf_left,
+});
 
 class KnobVolume extends Component {
   constructor(props) {
@@ -23,39 +27,18 @@ class KnobVolume extends Component {
       type: "rotation",
       bounds: { minRotation: 0, maxRotation: 250 },
       onDrag: () => {
-        const volume = (Drag[0].rotation / 250).toFixed(2);
+        const volume = Math.abs(Drag[0].rotation / 250).toFixed(2);
         switch (this.state.componentId) {
-          case "vol-1":
-            store.dispatch(change_volume_left({ volume_left: volume }))
-            console.log(store.getState().volume_left)
-            break;
-          case "fx-delay-1":
-            store.dispatch(change_delay_left({ delay_left: volume }))
-            console.log(store.getState().delay_left)
-            break;
-          case "fx-reverb-1":
-            store.dispatch(change_reverb_left({ reverb_left: volume }))
-            console.log(store.getState().reverb_left)
-            break;
           case "fx-lpf-1":
-            store.dispatch(change_lpf_left({ lpf_left: volume }))
+            let ReturnValue = 1 - volume;
+            let frequency = Math.round((ReturnValue + 0.01) * 10000);
+            store.dispatch(change_lpf_left({ lpf_left: frequency }))
             console.log(store.getState().lpf_left)
             break;
           case "fx-hpf-1":
-            store.dispatch(change_hpf_left({ hpf_left: volume }))
+            let frequencyHigh = volume * 5000;
+            store.dispatch(change_hpf_left({ hpf_left: frequencyHigh }))
             console.log(store.getState().hpf_left)
-            break;
-          case "vol-2":
-            store.dispatch(change_volume_right({ volume_right: volume }))
-            console.log(store.getState().volume_right)
-            break;
-          case "fx-delay-2":
-            store.dispatch(change_delay_right({ delay_right: volume }))
-            console.log(store.getState().delay_right)
-            break;
-          case "fx-reverb-2":
-            store.dispatch(change_reverb_right({ reverb_right: volume }))
-            console.log(store.getState().reverb_right)
             break;
           case "fx-lpf-2":
             store.dispatch(change_lpf_right({ lpf_right: volume }))
@@ -68,7 +51,6 @@ class KnobVolume extends Component {
         }
       }
     })
-
   }
 
   render() {
@@ -78,6 +60,24 @@ class KnobVolume extends Component {
       </div>
     );
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
+    if (prevProps.lpf_left !== this.props.lpf_left) {
+      // Update lowpass on the left
+      const lowpass = wavesurfer.backend.ac.createBiquadFilter();
+      lowpass.type = 'lowpass';
+      lowpass.frequency.value = this.props.lpf_left
+      wavesurfer.backend.setFilter(lowpass);
+    }
+    if (prevProps.hpf_left !== this.props.hpf_left) {
+      // Update highpass on the left
+      const highpass = wavesurfer.backend.ac.createBiquadFilter();
+      highpass.type = 'highpass';
+      highpass.frequency.value = this.props.hpf_left
+      wavesurfer.backend.setFilter(highpass);
+    }
+  }
 }
 
-export default KnobVolume;
+export default connect(mapStateToProps)(KnobVolume);

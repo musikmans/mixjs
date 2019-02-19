@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
   vinyl_art_left: state.vinyl_art_left.vinyl_art_left,
+  vinyl_art_right: state.vinyl_art_right.vinyl_art_right,
 });
 
 class VinylDisc extends Component {

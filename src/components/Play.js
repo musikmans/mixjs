@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   controls_left: state.controls_left.controls_left,
   controls_right: state.controls_right.controls_right,
   musicOnTheLeft: state.musicOnTheLeft.musicOnTheLeft,
-  musicOnTheRight: state.musicOnTheLeft.musicOnTheLeft,
+  musicOnTheRight: state.musicOnTheRight.musicOnTheRight,
 });
 
 class Play extends Component {
@@ -53,22 +53,27 @@ class Play extends Component {
         store.getState().musicOnTheLeft.musicOnTheLeft.playPause();
       }
     } else {
-      if (store.getState ().isLoadedRight.isLoadedRight === false) {
+      if (store.getState().isLoadedRight.isLoadedRight === false) {
         return;
       }
-      if (store.getState ().controls_right.controls_right !== 'play') {
+      if (store.getState().controls_right.controls_right !== 'play') {
         this.setState ({
           img: 'Assets/play_active.svg',
         });
         store.dispatch (change_controls_right ({controls_right: 'play'}));
-        console.log (store.getState ().controls_right);
+        store.getState().musicOnTheRight.musicOnTheRight.on('ready', function () {
+          store.getState().musicOnTheRight.musicOnTheRight.play(0);
+        });
+        // Play music here
+        store.getState().musicOnTheRight.musicOnTheRight.play();
       } else {
         this.setState ({
           img: 'Assets/play_inactive.svg',
         });
         store.dispatch (change_controls_right ({controls_right: 'pause'}));
         store.dispatch (change_loop_right ({loop_right: 'inactive'}));
-        console.log (store.getState().controls_right);
+        console.log (store.getState ().controls_right);
+        store.getState().musicOnTheRight.musicOnTheRight.playPause();
       }
     }
   }
@@ -139,6 +144,15 @@ class Play extends Component {
       ) {
         this.setState ({
           img: 'Assets/play_inactive.svg',
+        });
+        store.dispatch (change_loop_right ({loop_right: 'inactive'}));
+      }
+      if (
+        prevProps.controls_right !== this.props.controls_right &&
+        this.props.controls_right === 'play'
+      ) {
+        this.setState ({
+          img: 'Assets/play_active.svg',
         });
         store.dispatch (change_loop_right ({loop_right: 'inactive'}));
       } 

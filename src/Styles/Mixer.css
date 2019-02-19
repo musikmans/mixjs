@@ -378,6 +378,24 @@ body {
     max-height:11vh;
 }
 
+#rightwave {
+    position: absolute;
+    background-color: rgba(0,0,0,.6);
+    z-index: 100;
+    width: 33vh;
+    height: 14vh;
+    left: 69vh;
+    top: 51.6vh;
+    padding-top: 4vh;
+    padding-left: 1vh;
+    padding-right: 1vh;
+    border: 1px solid white;
+}
+
+#rightwave wave{
+    max-height:11vh;
+}
+
 /* Placement for time and Text */
 .textleft {
     z-index: 100;
@@ -385,7 +403,7 @@ body {
     font-family: 'Anton', sans-serif;
     font-size: 2vh;
     color: whitesmoke;
-    left: 15vh;
+    left: 5vh;
     top: 4.5vh;
 }
 
@@ -395,7 +413,27 @@ body {
     font-family: 'Anton', sans-serif;
     font-size: 4.5vh;
     color: whitesmoke;
-    left: 15vh;
+    left: 5vh;
+    top: 9.8vh;
+}
+
+.textright {
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 2vh;
+    color: whitesmoke;
+    left: 108vh;
+    top: 4.5vh;
+}
+
+.timeright {
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 4.5vh;
+    color: whitesmoke;
+    left: 108vh;
     top: 9.8vh;
 }
 
@@ -405,9 +443,9 @@ body {
     font-family: 'Anton', sans-serif;
     font-size: 3.6vh;
     color: whitesmoke;
-    left: 60.3vh;
+    left: 59.5vh;
     top: 6.2vh;
-    text-align: right;
+    text-align: center;
 }
 
 .bpmtop{
@@ -416,9 +454,57 @@ body {
     font-family: 'Anton', sans-serif;
     font-size: 1.8vh;
     color: whitesmoke;
-    left: 61.2vh;
+    left: 60.4vh;
     top: 2.4vh;
     text-align: center;
+}
+
+.bpmright {
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 3.6vh;
+    color: whitesmoke;
+    left: 161.3vh;
+    top: 6.2vh;
+    text-align: center;
+}
+
+.bpmtopright{
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 1.8vh;
+    color: whitesmoke;
+    left:162.4vh;
+    top: 2.4vh;
+    text-align: center;
+}
+
+.loadleft {
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 2vh;
+    color: whitesmoke;
+    width: 63.6vh;
+    left: 3.6vh;
+    top: 16.5vh;
+    background-color: #444;
+    text-align:center
+}
+
+.loadright {
+    z-index: 100;
+    position: absolute;
+    font-family: 'Anton', sans-serif;
+    font-size: 2vh;
+    color: whitesmoke;
+    width: 63.1vh;
+    left: 105.9vh;
+    top: 16.5vh;
+    background-color: #444;
+    text-align:center
 }
 
 @media (max-width: 991.98px) {

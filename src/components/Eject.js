@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { store } from "../store";
-import { change_controls_left, change_controls_right, load_music_left, load_music_right, change_vinyl_art_left } from "../actions";
+import { change_controls_left, change_controls_right, load_music_left, load_music_right, change_vinyl_art_left, change_vinyl_art_right } from "../actions";
 
 class Eject extends Component {
     constructor(props) {
@@ -40,6 +40,11 @@ class Eject extends Component {
                 })
                 store.dispatch(change_controls_right({ controls_right: "ejected" }))
                 store.dispatch(load_music_right({ isLoadedRight: false }))
+                store.getState().musicOnTheRight.musicOnTheRight.destroy();
+                document.getElementById('bpmright').innerHTML = "";
+                document.getElementById('timeright').innerHTML = "";
+                document.getElementById('textright').innerText = "Song:\nArtist:"
+                store.dispatch(change_vinyl_art_right({ vinyl_art_right: "./Assets/404.jpg" }))
                 console.log(store.getState().controls_right)
             } else {
                 this.setState({

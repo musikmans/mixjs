@@ -17,7 +17,8 @@ class OneBar extends Component {
       img: 'Assets/one_bar_inactive.svg',
       componentId: props.componentId,
       componentClass: props.componentClass,
-      oneBarInterval: ''
+      oneBarInterval: '',
+      oneBarIntervalRight: '',
     };
   }
 
@@ -38,6 +39,9 @@ class OneBar extends Component {
                 img: 'Assets/one_bar_pressed.svg',
               });
             } else {
+              if (store.getState().loop_right.loop_right === 'fourbars' || store.getState().loop_right.loop_right === 'eightbars' || store.getState().loop_right.loop_right === 'sixteenbars') {
+                return;
+              }
               this.setState({
                 img: 'Assets/one_bar_pressed.svg',
               });
@@ -79,20 +83,37 @@ class OneBar extends Component {
                 console.log(store.getState().loop_left);
               }
             } else {
-              if (
-                store.getState().loop_right.loop_right !== 'onebar' &&
-                store.getState().controls_right.controls_right === 'play'
-              ) {
+              if (store.getState().loop_right.loop_right === 'fourbars' || store.getState().loop_right.loop_right === 'eightbars' || store.getState().loop_right.loop_right === 'sixteenbars') {
+                return;
+              }
+              if (store.getState().loop_right.loop_right !== 'onebar' && store.getState().controls_right.controls_right === 'play') {
                 this.setState({
                   img: 'Assets/one_bar_active.svg',
                 });
                 store.dispatch(change_loop_right({ loop_right: 'onebar' }));
                 console.log(store.getState().loop_right);
+                const wavesurfer = store.getState().musicOnTheRight.musicOnTheRight;
+                const currentTime = wavesurfer.getCurrentTime();
+                const bpm = store.getState().bpmRight.bpmRight;
+                const musicBarsPerMin = bpm / 4;
+                const oneBarLength = 60 / musicBarsPerMin;
+                const endloop = currentTime + oneBarLength;
+                const secToInt = oneBarLength * 1000;
+                this.setState({
+                  oneBarIntervalRight: setInterval(function () { store.getState().musicOnTheRight.musicOnTheRight.play(currentTime, endloop) }, secToInt)
+                });
               } else {
                 this.setState({
                   img: 'Assets/one_bar_inactive.svg',
                 });
                 store.dispatch(change_loop_right({ loop_right: 'inactive' }));
+                if (store.getState().controls_right.controls_right === 'play') {
+                  clearInterval(this.state.oneBarIntervalRight);
+                  this.setState({
+                    oneBarIntervalRight: ''
+                  });
+                  store.getState().musicOnTheRight.musicOnTheRight.play()
+                }
                 console.log(store.getState().loop_right);
               }
             }
@@ -127,6 +148,12 @@ class OneBar extends Component {
       ) {
         this.setState({
           img: 'Assets/one_bar_inactive.svg',
+        });
+      }
+      if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right === 'stop') {
+        clearInterval(this.state.oneBarIntervalRight);
+        this.setState({
+          oneBarIntervalRight: ''
         });
       }
     }

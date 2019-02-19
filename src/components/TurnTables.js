@@ -3,6 +3,12 @@ import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable";
 import { store } from "../store";
 import { change_vinyl_left, change_vinyl_right } from "../actions";
+import {connect} from 'react-redux';
+
+const mapStateToProps = state => ({
+  musicOnTheLeft: state.musicOnTheLeft.musicOnTheLeft,
+  musicOnTheRight: state.musicOnTheRight.musicOnTheRight,
+});
 
 class TurnTables extends Component {
   constructor(props) {
@@ -49,9 +55,10 @@ class TurnTables extends Component {
     )}
   }
 
-  componentDidUpdate() {
-    const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
-    wavesurfer.on('audioprocess', function () {
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.musicOnTheLeft !== this.props.musicOnTheLeft) {
+      const wavesurfer = this.props.musicOnTheLeft;
+      wavesurfer.on('audioprocess', function () {
       if (wavesurfer.isPlaying()) {
         const totalTime = wavesurfer.getDuration();
         const currentTime = wavesurfer.getCurrentTime();
@@ -66,8 +73,27 @@ class TurnTables extends Component {
         document.getElementById("vinyl-left").style.transform = `rotate(-${rotationAngle}deg)`;
       }
     });
+    }
+    if (prevProps.musicOnTheRight !== this.props.musicOnTheRight) {
+      const wavesurferRight = this.props.musicOnTheRight;
+      wavesurferRight.on('audioprocess', function () {
+      if (wavesurferRight.isPlaying()) {
+        const totalTime = wavesurferRight.getDuration();
+        const currentTime = wavesurferRight.getCurrentTime();
+        const percentage = (currentTime / totalTime)*100;
+        const rotationAngle = 1000 * percentage;
+        document.getElementById("vinyl-right").style.transform = `rotate(${rotationAngle}deg)`;
+      } else {
+        const totalTime = wavesurferRight.getDuration();
+        const currentTime = wavesurferRight.getCurrentTime();
+        const percentage = (currentTime / totalTime)*100;
+        const rotationAngle = 2000 * percentage;
+        document.getElementById("vinyl-right").style.transform = `rotate(-${rotationAngle}deg)`;
+      }
+    });
+    }
   }
 
 }
 
-export default TurnTables;
+export default connect (mapStateToProps)(TurnTables);

@@ -10,7 +10,7 @@ class Stop extends Component {
             componentId: props.componentId,
             componentClass: props.componentClass
         };
- 
+
         this.stopMusic = this.stopMusic.bind(this);
         this.dontActivateStop = this.dontActivateStop.bind(this);
     }
@@ -65,8 +65,8 @@ class Stop extends Component {
             this.setState({
                 img: "Assets/stop_pressed.svg"
             })
+            store.getState().musicOnTheRight.musicOnTheRight.stop();
         }
-
     }
 
     render() {
