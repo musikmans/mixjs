@@ -23,9 +23,13 @@ import TimeTextRight from './TimeTextRight';
 import BpmLeft from './BpmLeft';
 import BpmRight from './BpmRight';
 import LoadRight from './LoadRight';
+import { store } from "../store";
+import { load_music_left, load_music_right } from '../actions';
 
 class MixerStructure extends Component {
   render () {
+    store.dispatch(load_music_left({ isLoadedLeft: false }))
+    store.dispatch(load_music_right({ isLoadedRight: false }))
     return (
       <main>
         <div className="console-container">

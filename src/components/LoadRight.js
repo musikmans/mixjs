@@ -2,10 +2,10 @@ import React, { Component } from "react"
 import { store } from "../store";
 import WaveSurfer from 'wavesurfer.js/dist/wavesurfer.min';
 import detect from 'bpm-detective';
-import { store_music_data_right, change_vinyl_art_right, wave_music_right, set_bpm_right } from "../actions";
+import { store_music_data_right, change_vinyl_art_right, wave_music_right, set_bpm_right, load_music_right } from "../actions";
 import { connect } from 'react-redux';
 
-let file = 'http://localhost:5000/music/1. Southern Tier - Conceptual Breathing.mp3'
+let file = 'http://localhost:5000/music/1. Adam Schofield - Anxious (Original Mix).mp3'
 
 const AudioContext = window.AudioContext || window.webkitAudioContext;
 let context = new AudioContext();
@@ -65,11 +65,11 @@ class LoadRight extends Component {
         wavesurfer2.load(file);
         wavesurfer2.zoom(80);
         store.dispatch(wave_music_right({ musicOnTheRight: wavesurfer2 }));
+        store.dispatch(load_music_right({ isLoadedRight: true }))
     }
     render() {
         return (
-            <div id="loadright" className="loadright">LOAD MUSIC
-        </div>
+            <div id="loadright" className="loadright">LOAD MUSIC</div>
         );
     }
     componentDidUpdate(prevProps, prevState, snapshot) {

@@ -16,7 +16,7 @@ class Eject extends Component {
 
     ejectTrack(side) {
         if (side === "eject-left") {
-            if (store.getState().controls_left.controls_left !== "ejected") {
+            if (store.getState().controls_left.controls_left !== "ejected" && store.getState().isLoadedLeft.isLoadedLeft) {
                 this.setState({
                     img: "Assets/eject_inactive.svg",
                 })
@@ -34,7 +34,7 @@ class Eject extends Component {
                 })
             }
         } else {
-            if (store.getState().controls_right.controls_right !== "ejected") {
+            if (store.getState().controls_right.controls_right !== "ejected" && store.getState().isLoadedRight.isLoadedRight) {
                 this.setState({
                     img: "Assets/eject_inactive.svg",
                 })

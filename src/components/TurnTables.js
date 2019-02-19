@@ -2,7 +2,6 @@ import VinylDisc from "./VinylDisc"
 import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable";
 import { store } from "../store";
-import { change_vinyl_left, change_vinyl_right } from "../actions";
 import {connect} from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -21,22 +20,8 @@ class TurnTables extends Component {
   }
 
   componentDidMount() {
-    const Drag = Draggable.create(`#${this.state.imageid}`, {
+    Draggable.create(`#${this.state.imageid}`, {
       type: "rotation",
-      bounds: { minRotation: 0, maxRotation: 100000 },
-      onDrag: () => {
-        const discRotation = Drag[0].rotation.toFixed(2);
-        switch (this.state.componentId) {
-          case "vinyl-left":
-            store.dispatch(change_vinyl_left({ vinyl_left: discRotation }))
-            console.log(store.getState().vinyl_left)
-            break;
-          default:
-            store.dispatch(change_vinyl_right({ vinyl_right: discRotation }))
-            console.log(store.getState().vinyl_right)
-            break;
-        }
-      }
     })
   }
 

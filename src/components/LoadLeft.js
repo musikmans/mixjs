@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { store } from "../store";
 import WaveSurfer from 'wavesurfer.js/dist/wavesurfer.min';
 import detect from 'bpm-detective';
-import { store_music_data_left, change_vinyl_art_left, wave_music_left, set_bpm_left } from "../actions";
+import { store_music_data_left, change_vinyl_art_left, wave_music_left, set_bpm_left, load_music_left } from "../actions";
 import { connect } from 'react-redux';
 
 let file = 'http://localhost:5000/music/Venetica - Catalina\'s Riddle (Pierre Pienaar Remix).mp3'
@@ -65,6 +65,7 @@ class LoadLeft extends Component {
         wavesurfer.load(file);
         wavesurfer.zoom(80);
         store.dispatch(wave_music_left({ musicOnTheLeft: wavesurfer }));
+        store.dispatch(load_music_left({ isLoadedLeft: true }))
     }
     render() {
         return (

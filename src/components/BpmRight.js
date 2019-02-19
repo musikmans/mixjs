@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux';
+import { store } from "../store";
 
 const mapStateToProps = state => ({
   bpmRight: state.bpmRight.bpmRight,
@@ -8,16 +9,18 @@ const mapStateToProps = state => ({
 class BpmRight extends Component {
   render() {
     return (
-        <>
+      <>
         <p className="bpmtopright">BPM</p>
         <div id="bpmright" className="bpmright"></div>
-        </>
+      </>
     );
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.bpmRight !== this.props.bpmRight) {
+    if (store.getState().isLoadedRight.isLoadedRight) {
+      if (prevProps.bpmRight !== this.props.bpmRight) {
         document.getElementById('bpmright').innerHTML = this.props.bpmRight;
+      }
     }
   }
 }

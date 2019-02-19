@@ -17,6 +17,8 @@ class KnobPanning extends Component {
       componentId: props.componentId,
       componentClass: props.componentClass
     };
+    store.dispatch(change_pan_left({ pan_left: 0 }))
+    store.dispatch(change_pan_right({ pan_right: 0 }))
   }
 
 
@@ -28,12 +30,26 @@ class KnobPanning extends Component {
         const volume = ((Drag[0].rotation / 250) * 2).toFixed(2);
         switch (this.state.componentId) {
           case "fx-pan-1":
-            store.dispatch(change_pan_left({ pan_left: volume }))
-            console.log(store.getState().pan_left)
+            if (store.getState().isLoadedLeft.isLoadedLeft) {
+              if (store.getState().reverb_left.reverb_left === true || store.getState().delay_left.delay_left === true ||
+                store.getState().lpf_left.lpf_left < 10000 || store.getState().hpf_left.hpf_left > 50) {
+                Drag[0].endDrag()
+                return;
+              }
+              store.dispatch(change_pan_left({ pan_left: volume }))
+              console.log(store.getState().pan_left)
+            }
             break;
           default:
-            store.dispatch(change_pan_right({ pan_right: volume }))
-            console.log(store.getState().pan_right)
+            if (store.getState().isLoadedRight.isLoadedRight) {
+              if (store.getState().reverb_right.reverb_right === true || store.getState().delay_right.delay_right === true ||
+                store.getState().lpf_right.lpf_right < 10000 || store.getState().hpf_right.hpf_right > 50) {
+                Drag[0].endDrag()
+                return;
+              }
+              store.dispatch(change_pan_right({ pan_right: volume }))
+              console.log(store.getState().pan_right)
+            }
             break;
         }
       }
@@ -52,17 +68,21 @@ class KnobPanning extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
     const wavesurfer2 = store.getState().musicOnTheRight.musicOnTheRight;
-    if (prevProps.pan_left !== this.props.pan_left) {
-      // Update panning on the left
-      const panning = wavesurfer.backend.ac.createStereoPanner();
-      panning.pan.value = this.props.pan_left
-      wavesurfer.backend.setFilter(panning);
+    if (store.getState().isLoadedLeft.isLoadedLeft) {
+      if (prevProps.pan_left !== this.props.pan_left) {
+        // Update panning on the left
+        const panning = wavesurfer.backend.ac.createStereoPanner();
+        panning.pan.value = this.props.pan_left
+        wavesurfer.backend.setFilter(panning);
+      }
     }
-    if (prevProps.pan_right !== this.props.pan_right) {
-      // Update lowpass on the right
-      const panning2 = wavesurfer2.backend.ac.createStereoPanner();
-      panning2.pan.value = this.props.pan_right
-      wavesurfer2.backend.setFilter(panning2);
+    if (store.getState().isLoadedRight.isLoadedRight) {
+      if (prevProps.pan_right !== this.props.pan_right) {
+        // Update lowpass on the right
+        const panning2 = wavesurfer2.backend.ac.createStereoPanner();
+        panning2.pan.value = this.props.pan_right
+        wavesurfer2.backend.setFilter(panning2);
+      }
     }
   }
 }

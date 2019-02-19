@@ -29,27 +29,29 @@ class TimeTextRight extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const wavesurfer = store.getState().musicOnTheRight.musicOnTheRight;
-    if (prevProps.id3Right !== this.props.id3Right) {
-      console.log(this.props.id3Right)
-      document.getElementById('textright').innerText = `Song: ${this.props.id3Right.tags.title}\nArtist: ${this.props.id3Right.tags.artist}`
-    }
-    if (prevProps.musicOnTheRight !== this.props.musicOnTheRight) {
-      wavesurfer.on('audioprocess', function () {
-        if (wavesurfer.isPlaying()) {
-          let totalTime = sectostr(wavesurfer.getDuration());
-          let currentTime = sectostr(wavesurfer.getCurrentTime());
+    if (store.getState().isLoadedRight.isLoadedRight) {
+      if (prevProps.id3Right !== this.props.id3Right) {
+        console.log(this.props.id3Right)
+        document.getElementById('textright').innerText = `Song: ${this.props.id3Right.tags.title}\nArtist: ${this.props.id3Right.tags.artist}`
+      }
+      if (prevProps.musicOnTheRight !== this.props.musicOnTheRight) {
+        wavesurfer.on('audioprocess', function () {
+          if (wavesurfer.isPlaying()) {
+            let totalTime = sectostr(wavesurfer.getDuration());
+            let currentTime = sectostr(wavesurfer.getCurrentTime());
 
-          document.getElementById('timeright').innerHTML = `${currentTime} / ${totalTime}`
-        }
-      });
-      wavesurfer.on('ready', function () {
+            document.getElementById('timeright').innerHTML = `${currentTime} / ${totalTime}`
+          }
+        });
+        wavesurfer.on('ready', function () {
+          let currentTime = sectostr(wavesurfer.getDuration());
+          document.getElementById('timeright').innerHTML = `00:00 / ${currentTime}`;
+        })
+      }
+      if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right === "stop") {
         let currentTime = sectostr(wavesurfer.getDuration());
         document.getElementById('timeright').innerHTML = `00:00 / ${currentTime}`;
-      })
-    }
-    if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right === "stop") {
-        let currentTime = sectostr(wavesurfer.getDuration());
-        document.getElementById('timeright').innerHTML = `00:00 / ${currentTime}`;
+      }
     }
   }
 }

@@ -8,6 +8,7 @@
     "jsmediatags": "^3.8.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-file-reader": "^1.1.4",
     "react-orientation": "^1.0.4",
     "react-redux": "^6.0.0",
     "react-scripts": "2.1.3",
