@@ -401,7 +401,7 @@ body {
     z-index: 100;
     position: absolute;
     font-family: 'Anton', sans-serif;
-    font-size: 2vh;
+    font-size: 2.5vh;
     color: whitesmoke;
     left: 5vh;
     top: 4.5vh;
@@ -411,17 +411,17 @@ body {
     z-index: 100;
     position: absolute;
     font-family: 'Anton', sans-serif;
-    font-size: 4.5vh;
+    font-size: 5.5vh;
     color: whitesmoke;
     left: 5vh;
-    top: 9.8vh;
+    top:11.4vh;
 }
 
 .textright {
     z-index: 100;
     position: absolute;
     font-family: 'Anton', sans-serif;
-    font-size: 2vh;
+    font-size: 2.5vh;
     color: whitesmoke;
     left: 108vh;
     top: 4.5vh;
@@ -431,10 +431,10 @@ body {
     z-index: 100;
     position: absolute;
     font-family: 'Anton', sans-serif;
-    font-size: 4.5vh;
+    font-size: 5.5vh;
     color: whitesmoke;
     left: 108vh;
-    top: 9.8vh;
+    top: 11.4vh;
 }
 
 .bpmleft {
@@ -465,7 +465,7 @@ body {
     font-family: 'Anton', sans-serif;
     font-size: 3.6vh;
     color: whitesmoke;
-    left: 161.3vh;
+    left: 161.4vh;
     top: 6.2vh;
     text-align: center;
 }
@@ -487,27 +487,62 @@ body {
     font-family: 'Anton', sans-serif;
     font-size: 2vh;
     color: whitesmoke;
-    width: 63.6vh;
-    left: 3.6vh;
-    top: 16.5vh;
-    background-color: #444;
-    text-align:center
+    width: 16.3vh;
+    height: 16.3vh;
+    left: 25.6vh;
+    top: 37.9vh;
+    text-align:center;
+    border-radius: 100vh;
 }
 
-.loadright {
+.loadleft .dropzone{
+    width: 16.3vh;
+    height: 16.3vh;
+    border-radius: 100vh;
+    margin-top: -2vh;
+}
+
+.loadright{
     z-index: 100;
     position: absolute;
     font-family: 'Anton', sans-serif;
     font-size: 2vh;
     color: whitesmoke;
-    width: 63.1vh;
-    left: 105.9vh;
-    top: 16.5vh;
-    background-color: #444;
-    text-align:center
+    width: 16.3vh;
+    height: 16.3vh;
+    left: 131.6vh;
+    top: 37.9vh;
+    text-align:center;
+    border-radius: 100vh;
 }
 
-@media (max-width: 991.98px) {
+.loadright .dropzone{
+    width: 16.3vh;
+    height: 16.3vh;
+    border-radius: 100vh;
+    margin-top: -2vh;
+}
+
+.landscape {
+    display: none;
+}
 
 
+@media all and (orientation:portrait) {
+    .landscape {
+        background-color: rgba(0,0,0,0.7);
+        width: 170vh;
+        height: 200vw;
+        z-index: 100000000;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        font-size: 10vh;
+        font-family: 'Anton', sans-serif;
+        color: white;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
 }

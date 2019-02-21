@@ -2,10 +2,25 @@ import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable"
 import { store } from "../store";
 import { changeLeftPitchLevel } from "../actions";
+import { connect } from 'react-redux';
+
+const mapStateToProps = state => ({
+    isLoadedLeft: state.isLoadedLeft.isLoadedLeft
+});
 
 class PitchLeft extends Component {
-    componentDidMount() {
-        if (store.getState().isLoadedLeft.isLoadedLeft) {
+    render() {
+        return (
+            <div id="fader-pitch-left" className="fader-pitch-left">
+                <img id="left-side-pitch" src="Assets/fader.svg" alt="Pitch fader on left side"
+
+                />
+            </div>
+        );
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.isLoadedLeft !== this.props.isLoadedLeft && this.props.isLoadedLeft===true) {
             const Drag = Draggable.create("#left-side-pitch", {
                 type: "y",
                 bounds: '.mixer svg g g#prefix__Layer_1 g#prefix__Pitch-2 .prefix__cls-4',
@@ -24,16 +39,6 @@ class PitchLeft extends Component {
             })
         }
     }
-
-    render() {
-        return (
-            <div id="fader-pitch-left" className="fader-pitch-left">
-                <img id="left-side-pitch" src="Assets/fader.svg" alt="Pitch fader on left side"
-
-                />
-            </div>
-        );
-    }
 }
 
-export default PitchLeft;
+export default connect (mapStateToProps)(PitchLeft);

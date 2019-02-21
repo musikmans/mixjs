@@ -38,7 +38,7 @@ class KnobVolume extends Component {
           case "fx-lpf-1":
             if (store.getState().isLoadedLeft.isLoadedLeft) {
               if (store.getState().reverb_left.reverb_left === true || store.getState().delay_left.delay_left === true ||
-                store.getState().pan_left.pan_left < -0.03 || store.getState().pan_left.pan_left > 0.03 ||
+                store.getState().pan_left.pan_left < -0.05 || store.getState().pan_left.pan_left > 0.05 ||
                 store.getState().hpf_left.hpf_left > 50) {
                 Drag[0].endDrag()
                 return;
@@ -52,7 +52,7 @@ class KnobVolume extends Component {
           case "fx-hpf-1":
             if (store.getState().isLoadedLeft.isLoadedLeft) {
               if (store.getState().reverb_left.reverb_left === true || store.getState().delay_left.delay_left === true ||
-                store.getState().pan_left.pan_left < -0.03 || store.getState().pan_left.pan_left > 0.03 ||
+                store.getState().pan_left.pan_left < -0.05 || store.getState().pan_left.pan_left > 0.05 ||
                 store.getState().lpf_left.lpf_left < 10000) {
                 Drag[0].endDrag()
                 return;
@@ -65,7 +65,7 @@ class KnobVolume extends Component {
           case "fx-lpf-2":
             if (store.getState().isLoadedRight.isLoadedRight) {
               if (store.getState().reverb_right.reverb_right === true || store.getState().delay_right.delay_right === true ||
-                store.getState().pan_right.pan_right < -0.03 || store.getState().pan_right.pan_right > 0.03 ||
+                store.getState().pan_right.pan_right < -0.05 || store.getState().pan_right.pan_right > 0.05 ||
                 store.getState().hpf_right.hpf_right > 50) {
                 Drag[0].endDrag()
                 return;
@@ -79,7 +79,7 @@ class KnobVolume extends Component {
           default:
             if (store.getState().isLoadedRight.isLoadedRight) {
               if (store.getState().reverb_right.reverb_right === true || store.getState().delay_right.delay_right === true ||
-                store.getState().pan_right.pan_right < -0.03 || store.getState().pan_right.pan_right > 0.03 ||
+                store.getState().pan_right.pan_right < -0.05 || store.getState().pan_right.pan_right > 0.05 ||
                 store.getState().lpf_right.lpf_right < 10000) {
                 Drag[0].endDrag()
                 return;

@@ -41,8 +41,8 @@ class FxButton extends Component {
                             case "fx-delay-1":
                                 if (store.getState().isLoadedLeft.isLoadedLeft) {
                                     if (store.getState().reverb_left.reverb_left === true || store.getState().lpf_left.lpf_left < 10000 ||
-                                        store.getState().hpf_left.hpf_left > 50 || store.getState().pan_left.pan_left < -0.03 ||
-                                        store.getState().pan_left.pan_left > 0.03) {
+                                        store.getState().hpf_left.hpf_left > 50 || store.getState().pan_left.pan_left < -0.05 ||
+                                        store.getState().pan_left.pan_left > 0.05) {
                                         return;
                                     }
                                     this.setState({
@@ -53,8 +53,8 @@ class FxButton extends Component {
                             case "fx-reverb-1":
                                 if (store.getState().isLoadedLeft.isLoadedLeft) {
                                     if (store.getState().delay_left.delay_left === true || store.getState().lpf_left.lpf_left < 10000 ||
-                                        store.getState().hpf_left.hpf_left > 50 || store.getState().pan_left.pan_left < -0.03 ||
-                                        store.getState().pan_left.pan_left > 0.03) {
+                                        store.getState().hpf_left.hpf_left > 50 || store.getState().pan_left.pan_left < -0.05 ||
+                                        store.getState().pan_left.pan_left > 0.05) {
                                         return;
                                     }
                                     this.setState({
@@ -65,8 +65,8 @@ class FxButton extends Component {
                             case "fx-delay-2":
                                 if (store.getState().isLoadedRight.isLoadedRight) {
                                     if (store.getState().reverb_right.reverb_right === true || store.getState().lpf_right.lpf_right < 10000 ||
-                                        store.getState().hpf_right.hpf_right > 50 || store.getState().pan_right.pan_right < -0.03 ||
-                                        store.getState().pan_right.pan_right > 0.03) {
+                                        store.getState().hpf_right.hpf_right > 50 || store.getState().pan_right.pan_right < -0.05 ||
+                                        store.getState().pan_right.pan_right > 0.05) {
                                         return;
                                     }
                                     this.setState({
@@ -77,8 +77,8 @@ class FxButton extends Component {
                             default:
                                 if (store.getState().isLoadedRight.isLoadedRight) {
                                     if (store.getState().delay_right.delay_right === true || store.getState().lpf_right.lpf_right < 10000 ||
-                                        store.getState().hpf_right.hpf_right > 50 || store.getState().pan_right.pan_right < -0.03 ||
-                                        store.getState().pan_right.pan_right > 0.03) {
+                                        store.getState().hpf_right.hpf_right > 50 || store.getState().pan_right.pan_right < -0.05 ||
+                                        store.getState().pan_right.pan_right > 0.05) {
                                         return;
                                     }
                                     this.setState({
@@ -93,8 +93,8 @@ class FxButton extends Component {
                             case "fx-delay-1":
                                 if (store.getState().isLoadedLeft.isLoadedLeft) {
                                     if (store.getState().reverb_left.reverb_left === true || store.getState().lpf_left.lpf_left < 10000 ||
-                                        store.getState().hpf_left.hpf_left > 50 || store.getState().pan_left.pan_left < -0.03 ||
-                                        store.getState().pan_left.pan_left > 0.03) {
+                                        store.getState().hpf_left.hpf_left > 50 || store.getState().pan_left.pan_left < -0.05 ||
+                                        store.getState().pan_left.pan_left > 0.05) {
                                         return;
                                     }
                                     if (store.getState().delay_left.delay_left !== true) {
@@ -115,8 +115,8 @@ class FxButton extends Component {
                             case "fx-reverb-1":
                                 if (store.getState().isLoadedLeft.isLoadedLeft) {
                                     if (store.getState().delay_left.delay_left === true || store.getState().lpf_left.lpf_left < 10000 ||
-                                        store.getState().hpf_left.hpf_left > 50 || store.getState().pan_left.pan_left < -0.03 ||
-                                        store.getState().pan_left.pan_left > 0.03) {
+                                        store.getState().hpf_left.hpf_left > 50 || store.getState().pan_left.pan_left < -0.05 ||
+                                        store.getState().pan_left.pan_left > 0.05) {
                                         return;
                                     }
                                     if (store.getState().reverb_left.reverb_left !== true) {
@@ -137,8 +137,8 @@ class FxButton extends Component {
                             case "fx-delay-2":
                                 if (store.getState().isLoadedRight.isLoadedRight) {
                                     if (store.getState().reverb_right.reverb_right === true || store.getState().lpf_right.lpf_right < 10000 ||
-                                        store.getState().hpf_right.hpf_right > 50 || store.getState().pan_right.pan_right < -0.03 ||
-                                        store.getState().pan_right.pan_right > 0.03) {
+                                        store.getState().hpf_right.hpf_right > 50 || store.getState().pan_right.pan_right < -0.05 ||
+                                        store.getState().pan_right.pan_right > 0.05) {
                                         return;
                                     }
                                     if (store.getState().delay_right.delay_right !== true) {
@@ -159,8 +159,8 @@ class FxButton extends Component {
                             default:
                                 if (store.getState().isLoadedRight.isLoadedRight) {
                                     if (store.getState().delay_right.delay_right === true || store.getState().lpf_right.lpf_right < 10000 ||
-                                        store.getState().hpf_right.hpf_right > 50 || store.getState().pan_right.pan_right < -0.03 ||
-                                        store.getState().pan_right.pan_right > 0.03) {
+                                        store.getState().hpf_right.hpf_right > 50 || store.getState().pan_right.pan_right < -0.05 ||
+                                        store.getState().pan_right.pan_right > 0.05) {
                                         return;
                                     }
                                     if (store.getState().reverb_right.reverb_right !== true) {

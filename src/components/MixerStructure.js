@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import MixerComponent from './MixerComponent';
-import ReactOrientation from 'react-orientation';
 import PitchLeft from './PitchLeft';
 import Eject from './Eject';
 import Rewind from './Rewind';
@@ -23,17 +22,20 @@ import TimeTextRight from './TimeTextRight';
 import BpmLeft from './BpmLeft';
 import BpmRight from './BpmRight';
 import LoadRight from './LoadRight';
+import Landscape from './Landscape';
 import { store } from "../store";
-import { load_music_left, load_music_right } from '../actions';
+import { load_music_left, load_music_right, change_vinyl_art_left, change_vinyl_art_right } from '../actions';
 
 class MixerStructure extends Component {
   render () {
     store.dispatch(load_music_left({ isLoadedLeft: false }))
     store.dispatch(load_music_right({ isLoadedRight: false }))
+    store.dispatch(change_vinyl_art_left({ vinyl_art_left: "Assets/drop.jpg" }));
+    store.dispatch(change_vinyl_art_right({ vinyl_art_right: "Assets/drop.jpg" }));
     return (
       <main>
         <div className="console-container">
-          <ReactOrientation type="landscape" />
+          <Landscape />
           <LoadLeft />
           <LoadRight />
           <TimeTextLeft />

@@ -3,6 +3,8 @@ import { Draggable } from "gsap/Draggable";
 import { store } from "../store";
 import { connect } from 'react-redux';
 import { change_pan_left, change_pan_right } from "../actions";
+const { detect } = require('detect-browser');
+const browser = detect();
 
 const mapStateToProps = state => ({
   pan_left: state.pan_left.pan_left,
@@ -15,7 +17,7 @@ class KnobPanning extends Component {
     this.state = {
       imageId: props.imageId,
       componentId: props.componentId,
-      componentClass: props.componentClass
+      componentClass: props.componentClass, 
     };
     store.dispatch(change_pan_left({ pan_left: 0 }))
     store.dispatch(change_pan_right({ pan_right: 0 }))
@@ -56,32 +58,38 @@ class KnobPanning extends Component {
     })
 
   }
-
   render() {
     return (
-      <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`}>
-        <img id={`${this.state.imageId}`} src="Assets/knob_left-02.svg" alt="Button Knob"></img>
+      (browser.name==="safari") ?
+        <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`} style={{backgroundColor:'#fff',fontSize:'1.5vh',transform:'rotate(0deg)',fontFamily: "Anton, sans-serif", width:'4vw', marginLeft:'-0.9vh',  marginTop:'-3.4vh', padding: '0.3vh'}}>
+          Function not available on safari
       </div>
+        :
+        <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`}>
+          <img id={`${this.state.imageId}`} src="Assets/knob_left-02.svg" alt="Button Knob"></img>
+        </div>
     );
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
     const wavesurfer2 = store.getState().musicOnTheRight.musicOnTheRight;
-    if (store.getState().isLoadedLeft.isLoadedLeft) {
-      if (prevProps.pan_left !== this.props.pan_left) {
-        // Update panning on the left
-        const panning = wavesurfer.backend.ac.createStereoPanner();
-        panning.pan.value = this.props.pan_left
-        wavesurfer.backend.setFilter(panning);
+    if (browser.name!=="safari") {
+      if (store.getState().isLoadedLeft.isLoadedLeft) {
+        if (prevProps.pan_left !== this.props.pan_left) {
+          // Update panning on the left
+          const panning = wavesurfer.backend.ac.createStereoPanner();
+          panning.pan.value = this.props.pan_left
+          wavesurfer.backend.setFilter(panning);
+        }
       }
-    }
-    if (store.getState().isLoadedRight.isLoadedRight) {
-      if (prevProps.pan_right !== this.props.pan_right) {
-        // Update lowpass on the right
-        const panning2 = wavesurfer2.backend.ac.createStereoPanner();
-        panning2.pan.value = this.props.pan_right
-        wavesurfer2.backend.setFilter(panning2);
+      if (store.getState().isLoadedRight.isLoadedRight) {
+        if (prevProps.pan_right !== this.props.pan_right) {
+          // Update lowpass on the right
+          const panning2 = wavesurfer2.backend.ac.createStereoPanner();
+          panning2.pan.value = this.props.pan_right
+          wavesurfer2.backend.setFilter(panning2);
+        }
       }
     }
   }
