@@ -61,8 +61,8 @@ class KnobPanning extends Component {
   render() {
     return (
       (browser.name==="safari") ?
-        <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`} style={{backgroundColor:'#fff',fontSize:'1.5vh',transform:'rotate(0deg)',fontFamily: "Anton, sans-serif", width:'4vw', marginLeft:'-0.9vh',  marginTop:'-3.4vh', padding: '0.3vh'}}>
-          Function not available on safari
+        <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`} style={{backgroundColor:'#ba0d0d',fontSize:'1.5vh',transform:'rotate(0deg)',fontFamily: "Anton, sans-serif", width:'4vw', marginLeft:'-0.9vh',  marginTop:'-3.4vh', padding: '0.3vh'}}>
+          <br /><br /><br /><br />
       </div>
         :
         <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`}>

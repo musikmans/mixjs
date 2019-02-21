@@ -116,12 +116,13 @@ class VinylDisc extends Component {
             ry={88.119}
           />
           <ellipse
+            className="spinner"
             fill="#ba0d0d"
             cx={216.865}
             cy={217.243}
             rx={5.64}
             ry={5.119}
-            styles="border:15px solid black"
+            style={{border:'15px solid black'}}
           />
         </g>
       </svg>

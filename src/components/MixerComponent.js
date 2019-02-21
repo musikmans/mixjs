@@ -52,7 +52,9 @@ const MixerComponent = props => (
             fill="#8e0909"
             d="M0 1006.1l28.5 37 1810-3.1V54.1L1802.1 0l-.6 991.5L0 1006.1z"
           />
-          <path fill="#ba0d0d" d="M0 0h1802.1v1009.21H0z" />
+        </g>
+        <g id="prefix__theConsole">
+          <path fill="#ba0d0d" d="M0 0h1802.1v1009.21H0z"/>
         </g>
         <g id="prefix__Controls">
           <path className="prefix__cls-4" d="M653.4 815.2v-50.9h-536v50.9" />

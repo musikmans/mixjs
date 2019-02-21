@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { store } from "../store";
-import WaveSurfer from 'wavesurfer.js/dist/wavesurfer.min';
+import WaveSurfer from 'wavesurfer.js';
 import detect from 'bpm-detective';
 import { store_music_data_left, change_vinyl_art_left, wave_music_left, set_bpm_left, load_music_left, change_controls_left } from "../actions";
 import { connect } from 'react-redux';

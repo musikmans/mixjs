@@ -23,10 +23,22 @@ import BpmLeft from './BpmLeft';
 import BpmRight from './BpmRight';
 import LoadRight from './LoadRight';
 import Landscape from './Landscape';
+import ColorChooser from './ColorChooser';
 import { store } from "../store";
 import { load_music_left, load_music_right, change_vinyl_art_left, change_vinyl_art_right } from '../actions';
 
 class MixerStructure extends Component {
+  componentDidMount() {
+    const logos = document.querySelectorAll('.prefix__cls-8');
+            [].forEach.call(logos, (element) => {
+                element.style.fill = '#fff';
+            });
+            const logosin = document.querySelectorAll('.prefix__cls-10');
+            [].forEach.call(logosin, (element) => {
+                element.style.fill = '#fff';
+            });
+  }
+
   render () {
     store.dispatch(load_music_left({ isLoadedLeft: false }))
     store.dispatch(load_music_right({ isLoadedRight: false }))
@@ -149,6 +161,7 @@ class MixerStructure extends Component {
           <CrossFader />
           <div id="leftwave"></div>
           <div id="rightwave"></div>
+          <ColorChooser />
           <div className="mixer">
             <MixerComponent />
           </div>
