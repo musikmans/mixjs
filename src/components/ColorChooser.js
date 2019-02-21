@@ -90,6 +90,20 @@ class ColorChooser extends Component {
             [].forEach.call(logosin, (element) => {
                 element.style.fill = '#fff';
             });
+            const text = document.querySelectorAll('.prefix__cls-5');
+            [].forEach.call(text, (element) => {
+                element.style.fill = '#fff';
+            }); 
+            const text2 = document.querySelectorAll('.prefix__cls-4');
+            [].forEach.call(text2, (element) => {
+                element.style.stroke = '#fff';
+            }); 
+            const text3 = document.querySelectorAll('.prefix__cls-7');
+            [].forEach.call(text3, (element) => {
+                element.style.stroke = '#fff';
+            });    
+            document.querySelector('.color-selector').style.color = '#fff';
+
         } else {
             const logos = document.querySelectorAll('.prefix__cls-8');
             [].forEach.call(logos, (element) => {
@@ -99,6 +113,19 @@ class ColorChooser extends Component {
             [].forEach.call(logosin, (element) => {
                 element.style.fill = '#000';
             });
+            const text = document.querySelectorAll('.prefix__cls-5');
+            [].forEach.call(text, (element) => {
+                element.style.fill = '#000';
+            }); 
+            const text2 = document.querySelectorAll('.prefix__cls-4');
+            [].forEach.call(text2, (element) => {
+                element.style.stroke = '#000';
+            }); 
+            const text3 = document.querySelectorAll('.prefix__cls-7');
+            [].forEach.call(text3, (element) => {
+                element.style.stroke = '#000';
+            }); 
+            document.querySelector('.color-selector').style.color = '#000';
         }
     };
 
@@ -107,13 +134,13 @@ class ColorChooser extends Component {
         const styles = reactCSS({
             'default': {
                 color: {
-                    width: '36px',
-                    height: '14px',
-                    borderRadius: '2px',
+                    width: '3vh',
+                    height: '1.4vh',
+                    borderRadius: '0.1vh',
                     background: `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b}, ${this.state.color.a})`,
                 },
                 swatch: {
-                    padding: '5px',
+                    padding: '2px',
                     background: '#fff',
                     borderRadius: '1px',
                     boxShadow: '0 0 0 1px rgba(0,0,0,.1)',

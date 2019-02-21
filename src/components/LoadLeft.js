@@ -40,15 +40,9 @@ class LoadLeft extends Component {
             window.alert("You can only add one file at the time");
         }
         // Create a blob with the MP#
-        const blob = new Blob(acceptedFiles, { type: "audio/mp3" })
-
-        // Convert the file to base 64 in order to detech BPM
-        var reader = new FileReader();
-        reader.readAsDataURL(blob);
-        reader.onloadend = function () {
-            const base64data = reader.result;
-            // Fetch some audio file
-            fetch(base64data)
+        const blob = new Blob(acceptedFiles, { type: "audio/mp3" });
+        const theURL = URL.createObjectURL(blob);
+            fetch(theURL)
                 // Get response as ArrayBuffer
                 .then(response => response.arrayBuffer())
                 .then(buffer => {
@@ -67,7 +61,6 @@ class LoadLeft extends Component {
                         console.error(err);
                     }
                 });
-        }
 
         // Get Track ID3
         var jsmediatags = require("jsmediatags");
@@ -86,7 +79,7 @@ class LoadLeft extends Component {
             barWidth: '5',
             barHeight: '2',
         });
-        wavesurfer.loadBlob(blob);
+        wavesurfer.load(theURL);
         wavesurfer.zoom(80);
         store.dispatch(wave_music_left({ musicOnTheLeft: wavesurfer }));
         store.dispatch(load_music_left({ isLoadedLeft: true }))

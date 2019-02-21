@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "blob-util": "^2.0.2",
     "bpm-detective": "^2.0.3",
     "classnames": "^2.2.6",
     "detect-browser": "^4.1.0",
