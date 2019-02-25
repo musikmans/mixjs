@@ -131,7 +131,7 @@ class EightBars extends Component {
                     img: "Assets/eight_bars_inactive.svg",
                 })
             }
-            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop') {
+            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left !== 'stop') {
                 clearInterval(this.state.eightBarsInterval);
                 this.setState({
                     eightBarsInterval: ''
@@ -143,13 +143,17 @@ class EightBars extends Component {
                     img: "Assets/eight_bars_inactive.svg",
                 })
             }
-            if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right === 'stop') {
+            if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right !== 'stop') {
                 clearInterval(this.state.eightBarsIntervalRight);
                 this.setState({
                     eightBarsIntervalRight: ''
                 });
             }
         }
+    }
+    componentWillUnmount() {
+        clearInterval(this.state.eightBarsInterval);
+        clearInterval(this.state.eightBarsIntervalRight);
     }
 
 }

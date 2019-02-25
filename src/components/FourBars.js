@@ -132,7 +132,7 @@ class FourBars extends Component {
                     img: "Assets/four_bars_inactive.svg"
                 })
             }
-            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop') {
+            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left !== 'play') {
                 clearInterval(this.state.fourBarsInterval);
                 this.setState({
                     fourBarsInterval: ''
@@ -144,7 +144,7 @@ class FourBars extends Component {
                     img: "Assets/four_bars_inactive.svg"
                 })
             }
-            if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right === 'stop') {
+            if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right !== 'play') {
                 clearInterval(this.state.fourBarsIntervalRight);
                 this.setState({
                     fourBarsIntervalRight: ''
@@ -153,6 +153,10 @@ class FourBars extends Component {
         }
     }
 
+    componentWillUnmount() {
+        clearInterval(this.state.fourBarsInterval);
+        clearInterval(this.state.fourBarsIntervalRight);
+    }
 }
 
 export default connect(mapStateToProps)(FourBars);

@@ -135,7 +135,7 @@ class OneBar extends Component {
           img: 'Assets/one_bar_inactive.svg',
         });
       }
-      if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop') {
+      if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left !== 'play') {
         clearInterval(this.state.oneBarInterval);
         this.setState({
           oneBarInterval: ''
@@ -150,7 +150,7 @@ class OneBar extends Component {
           img: 'Assets/one_bar_inactive.svg',
         });
       }
-      if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right === 'stop') {
+      if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right !== 'play') {
         clearInterval(this.state.oneBarIntervalRight);
         this.setState({
           oneBarIntervalRight: ''
@@ -158,6 +158,11 @@ class OneBar extends Component {
       }
     }
   }
+
+  componentWillUnmount() {
+    clearInterval(this.state.oneBarInterval);
+    clearInterval(this.state.oneBarIntervalRight);
+}
 }
 
 export default connect(mapStateToProps)(OneBar);

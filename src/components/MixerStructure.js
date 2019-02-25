@@ -25,7 +25,7 @@ import LoadRight from './LoadRight';
 import Landscape from './Landscape';
 import ColorChooser from './ColorChooser';
 import { store } from "../store";
-import { load_music_left, load_music_right, change_vinyl_art_left, change_vinyl_art_right } from '../actions';
+import { load_music_left, load_music_right, change_vinyl_art_left, change_vinyl_art_right, change_volume_left, change_volume_right } from '../actions';
 
 class MixerStructure extends Component {
   componentDidMount() {
@@ -44,6 +44,8 @@ class MixerStructure extends Component {
     store.dispatch(load_music_right({ isLoadedRight: false }))
     store.dispatch(change_vinyl_art_left({ vinyl_art_left: "Assets/drop.jpg" }));
     store.dispatch(change_vinyl_art_right({ vinyl_art_right: "Assets/drop.jpg" }));
+    store.dispatch(change_volume_left({ volume_left: 1 }))
+    store.dispatch(change_volume_right({ volume_right: 1 }))
     return (
       <main>
         <div className="console-container">

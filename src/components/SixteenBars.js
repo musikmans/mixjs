@@ -131,7 +131,7 @@ class SixteenBars extends Component {
                     img: "Assets/sixteen_bars_inactive.svg",
                 })
             }
-            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left === 'stop') {
+            if (prevProps.controls_left !== this.props.controls_left && this.props.controls_left !== 'play') {
                 clearInterval(this.state.sixteenBarsInterval);
                 this.setState({
                     sixteenBarsInterval: ''
@@ -143,13 +143,18 @@ class SixteenBars extends Component {
                     img: "Assets/sixteen_bars_inactive.svg",
                 })
             }
-            if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right === 'stop') {
+            if (prevProps.controls_right !== this.props.controls_right && this.props.controls_right !== 'play') {
                 clearInterval(this.state.sixteenBarsIntervalRight);
                 this.setState({
                     sixteenBarsIntervalRight: ''
                 });
             }
         }
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.sixteenBarsInterval);
+        clearInterval(this.state.sixteenBarsIntervalRight);
     }
 }
 

@@ -81,14 +81,17 @@ class LoadRight extends Component {
         });
 
         // Initialize new track
+        const vol = Math.round(store.getState().volume_right.volume_right);
         let wavesurfer2 = WaveSurfer.create({
             container: '#rightwave',
             waveColor: 'red',
             progressColor: '#c7c704',
             barWidth: '5',
             barHeight: '2',
+            setVolume: `${vol}`
         });
         wavesurfer2.load(theURL);
+        wavesurfer2.setVolume(vol);
         wavesurfer2.zoom(80);
         store.dispatch(wave_music_right({ musicOnTheRight: wavesurfer2 }));
         store.dispatch(load_music_right({ isLoadedRight: true }))

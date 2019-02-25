@@ -54,7 +54,7 @@ class TurnTables extends Component {
         const totalTime = wavesurfer.getDuration();
         const currentTime = wavesurfer.getCurrentTime();
         const percentage = (currentTime / totalTime)*100;
-        const rotationAngle = 2000 * percentage;
+        const rotationAngle = 1000 * percentage;
         document.getElementById("vinyl-left").style.transform = `rotate(-${rotationAngle}deg)`;
       }
     });
@@ -72,7 +72,7 @@ class TurnTables extends Component {
         const totalTime = wavesurferRight.getDuration();
         const currentTime = wavesurferRight.getCurrentTime();
         const percentage = (currentTime / totalTime)*100;
-        const rotationAngle = 2000 * percentage;
+        const rotationAngle = 1000 * percentage;
         document.getElementById("vinyl-right").style.transform = `rotate(-${rotationAngle}deg)`;
       }
     });

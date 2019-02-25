@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Draggable } from "gsap/Draggable";
 import { store } from "../store";
-import { changeLevel } from "../actions";
+import { changeLevel, change_volume_left, change_volume_right } from "../actions";
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
@@ -47,6 +47,8 @@ class CrossFader extends Component {
                     }
                     leftTrack.setVolume(volOnTheLeft);
                     rightTrack.setVolume(volOnTheRight);
+                    store.dispatch(change_volume_left({ volume_left: volOnTheLeft }))
+                    store.dispatch(change_volume_right({ volume_right: volOnTheRight }))
                 }
             })
         }

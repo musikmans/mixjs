@@ -72,14 +72,17 @@ class LoadLeft extends Component {
         });
 
         // Initialize new track
+        const vol = Math.round(store.getState().volume_left.volume_left);
         let wavesurfer = WaveSurfer.create({
             container: '#leftwave',
             waveColor: 'red',
             progressColor: '#c7c704',
             barWidth: '5',
             barHeight: '2',
+            setVolume: `${vol}`
         });
         wavesurfer.load(theURL);
+        wavesurfer.setVolume(vol);
         wavesurfer.zoom(80);
         store.dispatch(wave_music_left({ musicOnTheLeft: wavesurfer }));
         store.dispatch(load_music_left({ isLoadedLeft: true }))
