@@ -4,8 +4,7 @@ import WaveSurfer from 'wavesurfer.js';
 import detect from 'bpm-detective';
 import { store_music_data_right, change_vinyl_art_right, wave_music_right, set_bpm_right, load_music_right, change_controls_right } from "../actions";
 import { connect } from 'react-redux';
-import Dropzone from 'react-dropzone'
-import classNames from 'classnames'
+import FileDrop from 'react-file-drop'
 
 const mapStateToProps = state => ({
     id3Right: state.id3Right.id3Right,
@@ -22,13 +21,7 @@ function _arrayBufferToBase64(buffer) {
 }
 
 class LoadRight extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            url: ''
-        };
-    }
-    onDrop = (acceptedFiles, rejectedFiles) => {
+    handleDrop = (files) => {
         /// If there's a track, we destroy it
         if (store.getState().musicOnTheRight.musicOnTheRight) {
             const track = store.getState().musicOnTheRight.musicOnTheRight;
@@ -38,20 +31,28 @@ class LoadRight extends Component {
             store.dispatch(load_music_right({ isLoadedRight: false }))
             store.dispatch(change_controls_right({ controls_right: "ejected" }))
         }
+        // We make sure there's only one file...
+        if (files.length>1) {
+            window.alert("You can only add one file at the time");
+            files=[];
+            return;
+        }
+        // ...and this file is an MP3
+        const extension = files[0].name.slice(-4).toLowerCase();
+        if (extension!==".mp3") {
+            window.alert("You can only add MP3 files");
+            files=[];
+            return;
+        }
+
         const AudioContext = window.AudioContext || window.webkitAudioContext;
         let context = new AudioContext();
-        // We make sure there's only one MP3 (other file won't pass the filtering)
-        const numOfFiles = acceptedFiles.length;
-        if (numOfFiles > 1) {
-            window.alert("You can only add one file at the time");
-        }
         // Create a blob with the MP3
-        const blob = new Blob(acceptedFiles, { type: "audio/mp3" });
+        const blob = new Blob(files, { type: "audio/mp3" });
         const theURL = URL.createObjectURL(blob);
-        this.setState({
-            url: theURL
-        })
-            fetch(theURL)
+
+        // Fetch the BPM
+        fetch(theURL)
                 // Get response as ArrayBuffer
                 .then(response => response.arrayBuffer())
                 .then(buffer => {
@@ -65,13 +66,12 @@ class LoadRight extends Component {
                     try {
                         const bpm = detect(buffer);
                         store.dispatch(set_bpm_right({ bpmRight: bpm }));
-                        console.log(store.getState().bpmRight.bpmRight)
                     } catch (err) {
                         console.error(err);
                     }
                 });
-
-        // Get Track ID3
+        
+        // Here's we get the track ID3 Metadata
         var jsmediatags = require("jsmediatags");
 
         jsmediatags.read(blob, {
@@ -96,33 +96,17 @@ class LoadRight extends Component {
         store.dispatch(wave_music_right({ musicOnTheRight: wavesurfer2 }));
         store.dispatch(load_music_right({ isLoadedRight: true }))
         store.dispatch(change_controls_right({ controls_right: "stop" }))
-    }
-    render() {
+      }
+      render() {
         return (
-            <div id="loadright" className="loadright">
-                <Dropzone onDrop={this.onDrop} accept="audio/mp3">
-                    {({ getRootProps, getInputProps, isDragActive }) => {
-                        return (
-                            <div
-                                {...getRootProps()}
-                                className={classNames('dropzone', { 'dropzone--isActive': isDragActive })} style={{ padding: '-22px', margin: '-27px' }}
-                            >
-                                <input {...getInputProps()} />
-                                {
-                                    isDragActive ?
-                                        <p></p> :
-                                        <p></p>
-                                }
-                            </div>
-                        )
-                    }}
-                </Dropzone>
-            </div>
+          <div id="react-file-drop-right" className="react-file-drop-right">
+            <FileDrop onDrop={this.handleDrop}>
+            </FileDrop>
+          </div>
         );
-    }
+      }
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.id3Right !== this.props.id3Right) {
-            console.log(this.props.id3Right.tags)
             if (this.props.id3Right.tags.picture === undefined) {
                 store.dispatch(change_vinyl_art_right({ vinyl_art_right: "Assets/404.jpg" }));
             } else {

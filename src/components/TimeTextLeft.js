@@ -31,7 +31,6 @@ class TimeTextLeft extends Component {
     const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
     if (store.getState().isLoadedLeft.isLoadedLeft) {
       if (prevProps.id3Left !== this.props.id3Left) {
-        console.log(this.props.id3Left)
         document.getElementById('textleft').innerText = `Song: ${this.props.id3Left.tags.title}\nArtist: ${this.props.id3Left.tags.artist}`
       }
       if (prevProps.musicOnTheLeft !== this.props.musicOnTheLeft) {

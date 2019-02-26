@@ -40,7 +40,6 @@ class Stop extends Component {
                     img: "Assets/stop_inactive.svg",
                 })
                 store.dispatch(change_controls_right({ controls_right: "stop" }))
-                console.log(store.getState().controls_right)
             } else {
                 this.setState({
                     img: "Assets/stop_inactive.svg",

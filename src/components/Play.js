@@ -49,7 +49,6 @@ class Play extends Component {
         });
         store.dispatch (change_controls_left ({controls_left: 'pause'}));
         store.dispatch (change_loop_left ({loop_left: 'inactive'}));
-        console.log (store.getState ().controls_left);
         store.getState().musicOnTheLeft.musicOnTheLeft.playPause();
       }
     } else {
@@ -72,7 +71,6 @@ class Play extends Component {
         });
         store.dispatch (change_controls_right ({controls_right: 'pause'}));
         store.dispatch (change_loop_right ({loop_right: 'inactive'}));
-        console.log (store.getState ().controls_right);
         store.getState().musicOnTheRight.musicOnTheRight.playPause();
       }
     }

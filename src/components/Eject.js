@@ -27,7 +27,6 @@ class Eject extends Component {
                 document.getElementById('timeleft').innerHTML = "";
                 document.getElementById('textleft').innerText = "Song:\nArtist:"
                 store.dispatch(change_vinyl_art_left({ vinyl_art_left: "./Assets/404.jpg" }))
-                console.log(store.getState().controls_left)
             } else {
                 this.setState({
                     img: "Assets/eject_inactive.svg",
@@ -44,8 +43,7 @@ class Eject extends Component {
                 document.getElementById('bpmright').innerHTML = "";
                 document.getElementById('timeright').innerHTML = "";
                 document.getElementById('textright').innerText = "Song:\nArtist:"
-                store.dispatch(change_vinyl_art_right({ vinyl_art_right: "./Assets/404.jpg" }))
-                console.log(store.getState().controls_right)
+                store.dispatch(change_vinyl_art_right({ vinyl_art_right: "./Assets/drop.jpg" }))
             } else {
                 this.setState({
                     img: "Assets/eject_inactive.svg",

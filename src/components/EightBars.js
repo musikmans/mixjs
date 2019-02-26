@@ -65,7 +65,6 @@ class EightBars extends Component {
                                 this.setState({
                                     eightBarsInterval: setInterval(function () { store.getState().musicOnTheLeft.musicOnTheLeft.play(currentTime, endloop) }, secToInt)
                                 });
-                                console.log(store.getState().loop_left)
                             } else {
                                 this.setState({
                                     img: "Assets/eight_bars_inactive.svg",
@@ -78,7 +77,6 @@ class EightBars extends Component {
                                     });
                                     store.getState().musicOnTheLeft.musicOnTheLeft.play()
                                 }
-                                console.log(store.getState().loop_left)
                             }
                         } else {
                             if (store.getState().loop_right.loop_right === 'onebar' || store.getState().loop_right.loop_right === 'fourbars' || store.getState().loop_right.loop_right === 'sixteenbars') {
@@ -99,7 +97,6 @@ class EightBars extends Component {
                                 this.setState({
                                     eightBarsIntervalRight: setInterval(function () { store.getState().musicOnTheRight.musicOnTheRight.play(currentTime, endloop) }, secToInt)
                                 });
-                                console.log(store.getState().loop_right)
                             } else {
                                 this.setState({
                                     img: "Assets/eight_bars_inactive.svg",
@@ -112,7 +109,6 @@ class EightBars extends Component {
                                     });
                                     store.getState().musicOnTheRight.musicOnTheRight.play()
                                 }
-                                console.log(store.getState().loop_right)
                             }
                         }
                     }}

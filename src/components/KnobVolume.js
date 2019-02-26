@@ -46,7 +46,6 @@ class KnobVolume extends Component {
               let ReturnValue = 1 - volume;
               let frequency = Math.round((ReturnValue + 0.01) * 10000);
               store.dispatch(change_lpf_left({ lpf_left: frequency }))
-              console.log(store.getState().lpf_left)
             }
             break;
           case "fx-hpf-1":
@@ -59,7 +58,6 @@ class KnobVolume extends Component {
               }
               let frequencyHigh = volume * 5000;
               store.dispatch(change_hpf_left({ hpf_left: frequencyHigh }))
-              console.log(store.getState().hpf_left)
             }
             break;
           case "fx-lpf-2":
@@ -73,7 +71,6 @@ class KnobVolume extends Component {
               let ReturnValue2 = 1 - volume;
               let frequency2 = Math.round((ReturnValue2 + 0.01) * 10000);
               store.dispatch(change_lpf_right({ lpf_right: frequency2 }))
-              console.log(store.getState().lpf_right)
             }
             break;
           default:
@@ -86,7 +83,6 @@ class KnobVolume extends Component {
               }
               let frequencyHigh2 = volume * 5000;
               store.dispatch(change_hpf_right({ hpf_right: frequencyHigh2 }))
-              console.log(store.getState().hpf_right)
             }
             break;
         }

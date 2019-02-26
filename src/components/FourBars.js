@@ -56,7 +56,6 @@ class FourBars extends Component {
                                     img: "Assets/four_bars_active.svg",
                                 })
                                 store.dispatch(change_loop_left({ loop_left: "fourbars" }))
-                                console.log(store.getState().loop_left)
                                 const wavesurfer = store.getState().musicOnTheLeft.musicOnTheLeft;
                                 const currentTime = wavesurfer.getCurrentTime();
                                 const bpm = store.getState().bpmLeft.bpmLeft;
@@ -79,7 +78,6 @@ class FourBars extends Component {
                                     });
                                     store.getState().musicOnTheLeft.musicOnTheLeft.play()
                                 }
-                                console.log(store.getState().loop_left)
                             }
                         } else {
                             if (store.getState().loop_right.loop_right === 'onebar' || store.getState().loop_right.loop_right === 'eightbars' || store.getState().loop_right.loop_right === 'sixteenbars') {
@@ -90,7 +88,6 @@ class FourBars extends Component {
                                     img: "Assets/four_bars_active.svg",
                                 })
                                 store.dispatch(change_loop_right({ loop_right: "fourbars" }))
-                                console.log(store.getState().loop_right)
                                 const wavesurfer = store.getState().musicOnTheRight.musicOnTheRight;
                                 const currentTime = wavesurfer.getCurrentTime();
                                 const bpm = store.getState().bpmRight.bpmRight;
@@ -113,7 +110,6 @@ class FourBars extends Component {
                                     });
                                     store.getState().musicOnTheRight.musicOnTheRight.play()
                                 }
-                                console.log(store.getState().loop_right)
                             }
                         }
                     }}

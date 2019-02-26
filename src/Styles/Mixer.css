@@ -495,11 +495,30 @@ body {
     border-radius: 100vh;
 }
 
-.loadleft .dropzone{
-    width: 16.3vh;
-    height: 16.3vh;
-    border-radius: 100vh;
-    margin-top: -2vh;
+.react-file-drop-left {
+    z-index: 1000;
+    width: 16vh; 
+    height: 16vh;
+    padding: 20; 
+    position: absolute;
+    top: 37.9vh;
+    left: 25.7vh;
+    border-radius: 50vh;
+}
+
+.react-file-drop-left .file-drop{
+    position:relative;
+    height:16vh;
+    width:100%;
+    border-radius: 50vh;
+}
+
+.react-file-drop-left .file-drop > .file-drop-target {
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
 }
 
 .loadright{
@@ -516,11 +535,30 @@ body {
     border-radius: 100vh;
 }
 
-.loadright .dropzone{
-    width: 16.3vh;
-    height: 16.3vh;
-    border-radius: 100vh;
-    margin-top: -2vh;
+.react-file-drop-right {
+    z-index: 1000;
+    width: 16vh; 
+    height: 16vh;
+    padding: 20; 
+    position: absolute;
+    top: 37.9vh;
+    left: 131.7vh;
+    border-radius: 50vh;
+}
+
+.react-file-drop-right .file-drop{
+    position:relative;
+    height:16vh;
+    width:100%;
+    border-radius: 50vh;
+}
+
+.react-file-drop-right .file-drop > .file-drop-target {
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
 }
 
 .landscape {
@@ -542,12 +580,12 @@ body {
 @media all and (orientation:portrait) {
     .landscape {
         background-color: rgba(0,0,0,0.7);
-        width: 170vh;
-        height: 200vw;
+        width: 100vh;
+        height: 100vw;
         z-index: 100000000;
         position: absolute;
-        top: 0px;
-        left: 0px;
+        top: 0vh;
+        left: 0vh;
         font-size: 10vh;
         font-family: 'Anton', sans-serif;
         color: white;

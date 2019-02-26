@@ -33,7 +33,6 @@ class PitchRight extends Component {
                     let newBpm = Math.round(store.getState().bpmRight.bpmRight * position)
                     document.getElementById('bpmright').innerHTML = newBpm;
                     store.dispatch(changeRightPitchLevel({ rightPitchLevel: position }))
-                    console.log(store.getState().rightPitchLevel)
                 }
             })
         }

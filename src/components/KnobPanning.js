@@ -39,7 +39,6 @@ class KnobPanning extends Component {
                 return;
               }
               store.dispatch(change_pan_left({ pan_left: volume }))
-              console.log(store.getState().pan_left)
             }
             break;
           default:
@@ -50,7 +49,6 @@ class KnobPanning extends Component {
                 return;
               }
               store.dispatch(change_pan_right({ pan_right: volume }))
-              console.log(store.getState().pan_right)
             }
             break;
         }
@@ -61,7 +59,7 @@ class KnobPanning extends Component {
   render() {
     return (
       (browser.name==="safari") ?
-        <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`} style={{backgroundColor:'#ba0d0d',fontSize:'1.5vh',transform:'rotate(0deg)',fontFamily: "Anton, sans-serif", width:'4vw', marginLeft:'-0.9vh',  marginTop:'-3.4vh', padding: '0.3vh'}}>
+        <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`} style={{backgroundColor:'#ba0d0d',fontSize:'1.5vh',transform:'rotate(0deg)',fontFamily: "Anton, sans-serif", width:'8vh', height:'9vh', marginLeft:'-0.9vh',  marginTop:'-3.4vh', padding: '0.3vh'}}>
           <br /><br /><br /><br />
       </div>
         :

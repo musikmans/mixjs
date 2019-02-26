@@ -23,7 +23,6 @@ class Rewind extends Component {
                     img: "Assets/rew_pressed.svg",
                     })
                 store.dispatch(change_controls_left({ controls_left: "rewind" }))
-                console.log(store.getState().controls_left)
                 store.getState().musicOnTheLeft.musicOnTheLeft.skipBackward(2);
             } else {
                 if (store.getState().isLoadedRight.isLoadedRight === false) {
@@ -33,7 +32,6 @@ class Rewind extends Component {
                     img: "Assets/rew_pressed.svg",
                     })
                 store.dispatch(change_controls_right({ controls_right: "rewind" }))
-                console.log(store.getState().controls_right)
                 store.getState().musicOnTheRight.musicOnTheRight.skipBackward(2);
             }
     }

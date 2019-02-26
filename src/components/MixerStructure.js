@@ -21,11 +21,11 @@ import TimeTextLeft from './TimeTextLeft';
 import TimeTextRight from './TimeTextRight';
 import BpmLeft from './BpmLeft';
 import BpmRight from './BpmRight';
-import LoadRight from './LoadRight';
 import Landscape from './Landscape';
 import ColorChooser from './ColorChooser';
 import { store } from "../store";
 import { load_music_left, load_music_right, change_vinyl_art_left, change_vinyl_art_right, change_volume_left, change_volume_right } from '../actions';
+import LoadRight from './LoadRight';
 
 class MixerStructure extends Component {
   componentDidMount() {

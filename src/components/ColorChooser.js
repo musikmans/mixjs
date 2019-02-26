@@ -80,7 +80,6 @@ class ColorChooser extends Component {
         let shadow = shadeHexColor(color.hex, -0.3);
         document.querySelector('#prefix__Console path').style.fill = shadow;
         let tint = lightOrDark(color.hex);
-        console.log(tint)
         if (tint === 'dark') {
             const logos = document.querySelectorAll('.prefix__cls-8');
             [].forEach.call(logos, (element) => {
