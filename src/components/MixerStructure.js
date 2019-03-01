@@ -1,23 +1,176 @@
-import React from "react";
-import MixerElements from "./MixerElements";
-import SvgComponent from './SvgComponent'
+import React, {Component} from 'react';
+import MixerComponent from './MixerComponent';
+import PitchLeft from './PitchLeft';
+import Eject from './Eject';
+import Rewind from './Rewind';
+import Stop from './Stop';
+import Play from './Play';
+import FastForward from './FastForward';
+import OneBar from './OneBar';
+import FourBars from './FourBars';
+import EightBars from './EightBars';
+import SixteenBars from './SixteenBars';
+import PitchRight from './PitchRight';
+import CrossFader from './CrossFader';
+import KnobPanning from './KnobPanning';
+import LoadLeft from './LoadLeft';
+import FxButton from './FxButton';
+import KnobVolume from './KnobVolume';
+import TurnTables from './TurnTables';
+import TimeTextLeft from './TimeTextLeft';
+import TimeTextRight from './TimeTextRight';
+import BpmLeft from './BpmLeft';
+import BpmRight from './BpmRight';
+import Landscape from './Landscape';
+import ColorChooser from './ColorChooser';
+import { store } from "../store";
+import { load_music_left, load_music_right, change_vinyl_art_left, change_vinyl_art_right, change_volume_left, change_volume_right } from '../actions';
+import LoadRight from './LoadRight';
 
-const MixerStructure = (props) => {
+class MixerStructure extends Component {
+  componentDidMount() {
+    const logos = document.querySelectorAll('.prefix__cls-8');
+            [].forEach.call(logos, (element) => {
+                element.style.fill = '#fff';
+            });
+            const logosin = document.querySelectorAll('.prefix__cls-10');
+            [].forEach.call(logosin, (element) => {
+                element.style.fill = '#fff';
+            });
+  }
+
+  render () {
+    store.dispatch(load_music_left({ isLoadedLeft: false }))
+    store.dispatch(load_music_right({ isLoadedRight: false }))
+    store.dispatch(change_vinyl_art_left({ vinyl_art_left: "Assets/drop.jpg" }));
+    store.dispatch(change_vinyl_art_right({ vinyl_art_right: "Assets/drop.jpg" }));
+    store.dispatch(change_volume_left({ volume_left: 1 }))
+    store.dispatch(change_volume_right({ volume_right: 1 }))
     return (
-        <main>
-            <div class="console-container">
-                {props.mixcontrols.map(mixcontrol => (
-                <MixerElements {...mixcontrol} />
-                )
-                )}
-                <div class="mixer">
-                <SvgComponent />
-                </div>
-            </div>
-        </main>
+      <main>
+        <div className="console-container">
+          <Landscape />
+          <LoadLeft />
+          <LoadRight />
+          <TimeTextLeft />
+          <TimeTextRight />
+          <BpmLeft />
+          <BpmRight />
+          <PitchLeft />
+          <FxButton
+            imageId="knob-delay-left"
+            componentId="fx-delay-1"
+            componentClass="fx-left"
+          />
+          <FxButton
+            imageId="knob-reverb-left"
+            componentId="fx-reverb-1"
+            componentClass="fx-left"
+          />
+          <KnobPanning
+            imageId="knob-pan-left"
+            componentId="fx-pan-1"
+            componentClass="fx-left"
+          />
+          <KnobVolume
+            imageId="knob-lpf-left"
+            componentId="fx-lpf-1"
+            componentClass="fx-left"
+          />
+          <KnobVolume
+            imageId="knob-hpf-left"
+            componentId="fx-hpf-1"
+            componentClass="fx-left"
+          />
+          <TurnTables
+            imageid="vinyl-disc-left"
+            componentId="vinyl-left"
+            componentClass="vinyl-left"
+          />
+          <Eject componentId="eject-left" componentClass="controls-left" />
+          <Rewind componentId="rew-left" componentClass="controls-left" />
+          <Stop componentId="stop-left" componentClass="controls-left" />
+          <Play componentId="play-left" componentClass="controls-left" />
+          <FastForward componentId="ff-left" componentClass="controls-left" />
+          <OneBar
+            componentId="loop-one-left"
+            componentClass="controls-left"
+          />
+          <FourBars
+            componentId="loop-four-left"
+            componentClass="controls-left"
+          />
+          <EightBars
+            componentId="loop-eight-left"
+            componentClass="controls-left"
+          />
+          <SixteenBars
+            componentId="loop-sixteen-left"
+            componentClass="controls-left"
+          />
+          <PitchRight />
+          <FxButton
+            imageId="knob-delay-right"
+            componentId="fx-delay-2"
+            componentClass="fx-right"
+          />
+          <FxButton
+            imageId="knob-reverb-right"
+            componentId="fx-reverb-2"
+            componentClass="fx-right"
+          />
+          <KnobPanning
+            imageId="knob-pan-right"
+            componentId="fx-pan-2"
+            componentClass="fx-right"
+          />
+          <KnobVolume
+            imageId="knob-lpf-right"
+            componentId="fx-lpf-2"
+            componentClass="fx-right"
+          />
+          <KnobVolume
+            imageId="knob-hpf-right"
+            componentId="fx-hpf-2"
+            componentClass="fx-right"
+          />
+          <TurnTables
+            imageid="vinyl-disc-right"
+            componentId="vinyl-right"
+            componentClass="vinyl-right"
+          />
+          <Eject componentId="eject-right" componentClass="controls-right" />
+          <Rewind componentId="rew-right" componentClass="controls-right" />
+          <Stop componentId="stop-right" componentClass="controls-right" />
+          <Play componentId="play-right" componentClass="controls-right" />
+          <FastForward componentId="ff-right" componentClass="controls-right" />
+          <OneBar
+            componentId="loop-one-right"
+            componentClass="controls-right"
+          />
+          <FourBars
+            componentId="loop-four-right"
+            componentClass="controls-right"
+          />
+          <EightBars
+            componentId="loop-eight-right"
+            componentClass="controls-right"
+          />
+          <SixteenBars
+            componentId="loop-sixteen-right"
+            componentClass="controls-right"
+          />
+          <CrossFader />
+          <div id="leftwave"></div>
+          <div id="rightwave"></div>
+          <ColorChooser />
+          <div className="mixer">
+            <MixerComponent />
+          </div>
+        </div>
+      </main>
     );
+  }
 }
-
-
 
 export default MixerStructure;
