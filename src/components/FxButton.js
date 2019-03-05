@@ -17,7 +17,7 @@ class FxButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            img: 'Assets/FxButton_inactive.svg',
+            img: 'Assets/fxButton_inactive.svg',
             imageId: props.imageId,
             componentId: props.componentId,
             componentClass: props.componentClass
@@ -46,7 +46,7 @@ class FxButton extends Component {
                                         return;
                                     }
                                     this.setState({
-                                        img: 'Assets/FxButton_pressed.svg',
+                                        img: 'Assets/fxButton_pressed.svg',
                                     });
                                 }
                                 break;
@@ -58,7 +58,7 @@ class FxButton extends Component {
                                         return;
                                     }
                                     this.setState({
-                                        img: 'Assets/FxButton_pressed.svg',
+                                        img: 'Assets/fxButton_pressed.svg',
                                     });
                                 }
                                 break;
@@ -70,7 +70,7 @@ class FxButton extends Component {
                                         return;
                                     }
                                     this.setState({
-                                        img: 'Assets/FxButton_pressed.svg',
+                                        img: 'Assets/fxButton_pressed.svg',
                                     });
                                 }
                                 break;
@@ -82,7 +82,7 @@ class FxButton extends Component {
                                         return;
                                     }
                                     this.setState({
-                                        img: 'Assets/FxButton_pressed.svg',
+                                        img: 'Assets/fxButton_pressed.svg',
                                     });
                                 }
                                 break;
@@ -100,13 +100,13 @@ class FxButton extends Component {
                                     if (store.getState().delay_left.delay_left !== true) {
                                         // activate
                                         this.setState({
-                                            img: 'Assets/FxButton_active.svg',
+                                            img: 'Assets/fxButton_active.svg',
                                         });
                                         store.dispatch(change_delay_left({ delay_left: true }))
                                     } else {
                                         // desactivate
                                         this.setState({
-                                            img: 'Assets/FxButton_inactive.svg',
+                                            img: 'Assets/fxButton_inactive.svg',
                                         });
                                         store.dispatch(change_delay_left({ delay_left: false }))
                                     }
@@ -122,13 +122,13 @@ class FxButton extends Component {
                                     if (store.getState().reverb_left.reverb_left !== true) {
                                         // activate
                                         this.setState({
-                                            img: 'Assets/FxButton_active.svg',
+                                            img: 'Assets/fxButton_active.svg',
                                         });
                                         store.dispatch(change_reverb_left({ reverb_left: true }))
                                     } else {
                                         // desactivate
                                         this.setState({
-                                            img: 'Assets/FxButton_inactive.svg',
+                                            img: 'Assets/fxButton_inactive.svg',
                                         });
                                         store.dispatch(change_reverb_left({ reverb_left: false }))
                                     }
@@ -144,13 +144,13 @@ class FxButton extends Component {
                                     if (store.getState().delay_right.delay_right !== true) {
                                         // activate
                                         this.setState({
-                                            img: 'Assets/FxButton_active.svg',
+                                            img: 'Assets/fxButton_active.svg',
                                         });
                                         store.dispatch(change_delay_right({ delay_right: true }))
                                     } else {
                                         // desactivate
                                         this.setState({
-                                            img: 'Assets/FxButton_inactive.svg',
+                                            img: 'Assets/fxButton_inactive.svg',
                                         });
                                         store.dispatch(change_delay_right({ delay_right: false }))
                                     }
@@ -166,13 +166,13 @@ class FxButton extends Component {
                                     if (store.getState().reverb_right.reverb_right !== true) {
                                         // activate
                                         this.setState({
-                                            img: 'Assets/FxButton_active.svg',
+                                            img: 'Assets/fxButton_active.svg',
                                         });
                                         store.dispatch(change_reverb_right({ reverb_right: true }))
                                     } else {
                                         // desactivate
                                         this.setState({
-                                            img: 'Assets/FxButton_inactive.svg',
+                                            img: 'Assets/fxButton_inactive.svg',
                                         });
                                         store.dispatch(change_reverb_right({ reverb_right: false }))
                                     }
