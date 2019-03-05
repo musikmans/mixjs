@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 87.4 85.5" style="enable-background:new 0 0 87.4 85.5;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.5;enable-background:new    ;}
+	.st1{fill:url(#SVGID_1_);}
+</style>
+<title>rew_pressed</title>
+<rect class="st0" width="87.4" height="85.5"/>
+<radialGradient id="SVGID_1_" cx="42.2111" cy="44.8329" r="48.7498" gradientTransform="matrix(0.9436 -0.331 0.3352 0.9556 -12.648 15.9635)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0" style="stop-color:#D31313"/>
+	<stop  offset="0.2616" style="stop-color:#D64F4F"/>
+	<stop  offset="0.6182" style="stop-color:#DA9B9B"/>
+	<stop  offset="0.8733" style="stop-color:#DCCBCB"/>
+	<stop  offset="1" style="stop-color:#DDDDDD"/>
+</radialGradient>
+<rect x="6.1" y="5" class="st1" width="75.2" height="75.5"/>
+<path d="M44.3,42.7l14.3-14.3V57L44.3,42.7z M28.8,42.7l14.3-14.3V57L28.8,42.7z"/>
+</svg>
