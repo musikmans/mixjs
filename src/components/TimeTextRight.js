@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { store } from "../store";
 import { connect } from 'react-redux';
+import { change_controls_right } from "../actions";
 
 const mapStateToProps = state => ({
   id3Right: state.id3Right.id3Right,
@@ -29,6 +30,9 @@ class TimeTextRight extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     const wavesurfer = store.getState().musicOnTheRight.musicOnTheRight;
+    wavesurfer.on('finish', function () {
+      store.dispatch(change_controls_right({ controls_right: "stop" }))
+  });
     if (store.getState().isLoadedRight.isLoadedRight) {
       if (prevProps.id3Right !== this.props.id3Right) {
         document.getElementById('textright').innerText = `Song: ${this.props.id3Right.tags.title}\nArtist: ${this.props.id3Right.tags.artist}`
