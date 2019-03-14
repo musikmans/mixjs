@@ -14,8 +14,8 @@ export function change_delay_left(delay_left) {
     return { type: "CHANGE_DELAY_LEFT", delay_left }
 };
 
-export function change_reverb_left(reverb_left) {
-    return { type: "CHANGE_REVERB_LEFT", reverb_left }
+export function change_distortion_left(distortion_left) {
+    return { type: "CHANGE_DISTORTION_LEFT", distortion_left }
 };
 
 export function change_lpf_left(lpf_left) {
@@ -34,8 +34,8 @@ export function change_delay_right(delay_right) {
     return { type: "CHANGE_DELAY_RIGHT", delay_right }
 };
 
-export function change_reverb_right(reverb_right) {
-    return { type: "CHANGE_REVERB_RIGHT", reverb_right }
+export function change_distortion_right(distortion_right) {
+    return { type: "CHANGE_DISTORTION_RIGHT", distortion_right }
 };
 
 export function change_lpf_right(lpf_right) {

@@ -4,12 +4,12 @@ const initialState = {
   rightPitchLevel: 0,
   volume_left: 0,
   delay_left: false,
-  reverb_left: false,
+  distortion_left: false,
   lpf_left: 0,
   hpf_left: 0,
   volume_right: 0,
   delay_right: false,
-  reverb_right: false,
+  distortion_right: false,
   lpf_right: 0,
   hpf_right: 0,
   pan_left: 0,
@@ -62,10 +62,10 @@ function reducer(state = initialState, action) {
         delay_left: action.delay_left
       };
 
-    case "CHANGE_REVERB_LEFT":
+    case "CHANGE_DISTORTION_LEFT":
       return {
         ...state,
-        reverb_left: action.reverb_left
+        distortion_left: action.distortion_left
       };
 
     case "CHANGE_LPF_LEFT":
@@ -92,10 +92,10 @@ function reducer(state = initialState, action) {
         delay_right: action.delay_right
       };
 
-    case "CHANGE_REVERB_RIGHT":
+    case "CHANGE_DISTORTION_RIGHT":
       return {
         ...state,
-        reverb_right: action.reverb_right
+        distortion_right: action.distortion_right
       };
 
     case "CHANGE_LPF_RIGHT":

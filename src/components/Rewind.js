@@ -1,85 +1,62 @@
 import React, { Component } from "react"
 import { store } from "../store";
-import { change_controls_left, change_controls_right } from "../actions";
+import { change_controls_left } from "../actions";
 
 class Rewind extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          img: "Assets/rew_inactive.svg",
-          componentId: props.componentId,
-          componentClass: props.componentClass
+            img: "Assets/rew_inactive.svg",
         };
         this.stopRewind = this.stopRewind.bind(this);
         this.rewindMusic = this.rewindMusic.bind(this);
     }
 
-    rewindMusic(side) {
-            if (side === "rew-left") {
-                if (store.getState().isLoadedLeft.isLoadedLeft === false) {
-                    return;
-                }
-                this.setState({
-                    img: "Assets/rew_pressed.svg",
-                    })
-                store.dispatch(change_controls_left({ controls_left: "rewind" }))
-                store.getState().musicOnTheLeft.musicOnTheLeft.skipBackward(2);
-            } else {
-                if (store.getState().isLoadedRight.isLoadedRight === false) {
-                    return;
-                }
-                this.setState({
-                    img: "Assets/rew_pressed.svg",
-                    })
-                store.dispatch(change_controls_right({ controls_right: "rewind" }))
-                store.getState().musicOnTheRight.musicOnTheRight.skipBackward(2);
-            }
+    rewindMusic() {
+        if (store.getState().isLoadedLeft.isLoadedLeft === false) {
+            return;
+        }
+        this.setState({
+            img: "Assets/rew_pressed.svg",
+        })
+        store.dispatch(change_controls_left({ controls_left: "rewind" }))
+        store.getState().musicOnTheLeft.musicOnTheLeft.skipBackward(2);
+
     }
 
-    stopRewind(side) {
-        if (side === "rew-left") {
-            if (store.getState().isLoadedLeft.isLoadedLeft === false) {
-                return;
-            }
-            this.setState({
-                img: "Assets/rew_inactive.svg",
-                })
-                store.dispatch(change_controls_left({ controls_left: "play" }))
-
-        } else {
-            if (store.getState().isLoadedRight.isLoadedRight === false) {
-                return;
-            }
-            this.setState({
-                img: "Assets/rew_inactive.svg",
-                })
-                store.dispatch(change_controls_right({ controls_right: "play" }))
+    stopRewind() {
+        if (store.getState().isLoadedLeft.isLoadedLeft === false) {
+            return;
         }
+        this.setState({
+            img: "Assets/rew_inactive.svg",
+        })
+        store.dispatch(change_controls_left({ controls_left: "play" }))
     }
 
     render() {
         return (
-            <div id={`${this.state.componentId}`} className={`${this.state.componentClass}`}>
+            <div id="rew-left" className="controls-left">
                 <img
-                src={this.state.img}
+                    src={this.state.img}
                     onMouseDown={() => {
-                        this.rewindMusic(this.state.componentId)
+                        this.rewindMusic()
                     }}
 
                     onMouseUp={() => {
-                        this.stopRewind(this.state.componentId)
+                        this.stopRewind()
                     }}
 
                     onTouchStart={() => {
-                        this.rewindMusic(this.state.componentId)
+                        this.rewindMusic()
                     }}
 
                     onTouchEnd={() => {
-                        this.stopRewind(this.state.componentId)
+                        this.stopRewind()
                     }}
-                alt="Rewind"
+                    alt="Rewind"
                 />
-                
+
             </div>
         );
     }

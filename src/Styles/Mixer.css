@@ -101,7 +101,7 @@ body {
     z-index: 10;
 }
 
-.console-container #fx-reverb-1 {
+.console-container #fx-distortion-1 {
     position: absolute;
     top: 36.9vh;
     left: 59.5vh;
@@ -166,7 +166,7 @@ body {
 
 /* Four bars button left */
 
-.console-container #loop-four-left {
+.console-container #loop-two-left {
     position: absolute;
     top: 87vh;
     left: 23.3vh;
@@ -176,7 +176,7 @@ body {
 
 /* Eight bars button left */
 
-.console-container #loop-eight-left {
+.console-container #loop-four-left {
     position: absolute;
     top: 87vh;
     left: 34.6vh;
@@ -186,7 +186,7 @@ body {
 
 /* Sixteen bars button left */
 
-.console-container #loop-sixteen-left {
+.console-container #loop-eight-left {
     position: absolute;
     top: 87vh;
     left: 47.6vh;
@@ -266,7 +266,7 @@ body {
     z-index: 10;
 }
 
-.console-container #fx-reverb-2 {
+.console-container #fx-distortion-2 {
     position: absolute;
     top: 36.7vh;
     left: 108.1vh;
@@ -331,7 +331,7 @@ body {
 
 /* Four bars button right */
 
-.console-container #loop-four-right {
+.console-container #loop-two-right {
     position: absolute;
     top: 87vh;
     left: 123.5vh;
@@ -341,7 +341,7 @@ body {
 
 /* Eight bars button right */
 
-.console-container #loop-eight-right {
+.console-container #loop-four-right {
     position: absolute;
     top: 87vh;
     left: 134.8vh;
@@ -351,7 +351,7 @@ body {
 
 /* Sixteen bars button right */
 
-.console-container #loop-sixteen-right {
+.console-container #loop-eight-right {
     position: absolute;
     top: 87vh;
     left: 147.5vh;
