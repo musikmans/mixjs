@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MixerComponent from './MixerComponent';
 import PitchLeft from './PitchLeft';
 import Eject from './Eject';
-import EjectTrack from './EjectTrack'
+import Eject2 from './Eject2'
 import Rewind from './Rewind';
 import RewindRight from './RewindRight';
 import Stop from './Stop';
@@ -96,7 +96,7 @@ class MixerStructure extends Component {
           <KnobLpfRight />
           <KnobHpfRight />
           <TurnTablesRight />
-          <EjectTrack />
+          <Eject2 />
           <RewindRight />
           <StopRight />
           <PlayRight />
